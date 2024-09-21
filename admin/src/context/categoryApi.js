@@ -10,7 +10,7 @@ export const CategoryContextProvider = ({ children }) => {
     const fetCategory = async () => {
       try {
         const response = await axios.get(
-          `${REACT_APP_BACKEND_URL}/api/v1/category`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/category`
         );
         setCategory(response.data.category);
       } catch (error) {

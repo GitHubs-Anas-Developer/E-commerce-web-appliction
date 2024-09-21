@@ -103,7 +103,7 @@ function Product() {
     });
 
     try {
-      await axios.post(`${REACT_APP_BACKEND_URL}/api/v1/createProduct`, formData, {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/createProduct`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

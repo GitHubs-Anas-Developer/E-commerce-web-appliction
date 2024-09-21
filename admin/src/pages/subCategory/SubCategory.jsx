@@ -69,7 +69,7 @@ function SubCategory() {
     const fetchSubCategories = async () => {
       try {
         const response = await axios.get(
-          `${REACT_APP_BACKEND_URL}/api/v1/category`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/category`
         );
         setSubCategories(response.data.category);
         console.log("Fetched subCategories:", response.data.subCategories);
