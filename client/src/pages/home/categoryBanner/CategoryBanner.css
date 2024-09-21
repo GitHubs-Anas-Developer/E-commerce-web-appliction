@@ -1,0 +1,82 @@
+/* Container for category items */
+.category {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent items from wrapping */
+  padding: 20px; /* Adequate padding for spacing */
+  gap: 20px; /* Gap between items */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #555 #e0e0e0; /* Custom scrollbar color */
+}
+
+/* Style for each category item */
+.category-item {
+  display: inline-flex;
+  flex-direction: column; /* Stack image and heading vertically */
+  align-items: center; /* Center align items horizontally */
+  text-align: center; 
+  flex: 0 0 auto; 
+  border-radius: 12px; /* Rounded corners */
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+  color: #fff; /* White text color */
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Smooth transitions */
+  width: auto; /* Width for each item */
+  padding: 15px; /* Padding inside each item */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow by default */
+}
+
+.category-item:hover {
+  transform: translateY(-15px); /* Lift item on hover */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Reversed gradient on hover */
+}
+
+/* Style for images within category items */
+.category-img {
+  width: 120px; /* Set a fixed width */
+  height: 120px; /* Set height for a perfect circle */
+  object-fit: contain; /* Ensure image fits the circle */
+  border-radius: 50%; /* Round image */
+  border: 4px solid #fff; /* White border for contrast */
+  margin-bottom: 12px; /* Space below the image */
+}
+
+/* Style for headings within category items */
+.category-item h6 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.2rem; /* Larger font size for better visibility */
+  color: #fff; /* White text color */
+  font-weight: 700; /* Bolder text */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for better readability */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .category-item {
+    width: 130px; /* Adjust width for mobile */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .category-img {
+    width: 90px; /* Adjust image width */
+    height: 90px; /* Adjust image height */
+  }
+
+  .category-item h6 {
+    font-size: 1rem; /* Adjust text size for mobile */
+  }
+}
+
+/* Optional: Custom scrollbar for webkit browsers */
+.category::-webkit-scrollbar {
+  height: 12px; /* Scrollbar height */
+}
+
+.category::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 12px; /* Rounded scrollbar */
+}
+
+.category::-webkit-scrollbar-track {
+  background-color: #e0e0e0; /* Track background color */
+}

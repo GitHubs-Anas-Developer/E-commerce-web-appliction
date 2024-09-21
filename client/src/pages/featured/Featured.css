@@ -1,0 +1,139 @@
+/* Container for the featured section */
+.featured-container {
+  padding: 30px;
+
+  
+}
+
+/* Title styling */
+.featured-container h2 {
+  text-align: center;
+  margin-bottom: 25px; /* Margin for spacing */
+  font-size: 2.2rem; /* Slightly larger font size */
+  color: #444; /* Dark grey color */
+  font-family: "Helvetica Neue", sans-serif; /* Modern font */
+  font-weight: 600; /* Semi-bold weight */
+}
+
+/* Wrapper for horizontal scrolling */
+.featured-grid-wrapper {
+  overflow-x: auto; /* Horizontal scrolling */
+}
+
+/* Flex container for grid items */
+.featured-grid {
+  display: flex;
+  gap: 20px; /* Gap between items */
+  padding-bottom: 20px; /* Space for scrollbar */
+}
+
+/* Styling for each featured item */
+.featured-item {
+  background: #fff;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 15px;
+  max-width: 180px;
+  position: relative;
+  flex: 0 0 auto; /* Prevent stretching */
+}
+
+/* Hover effect for featured items */
+.featured-item:hover {
+  transform: translateY(-8px); /* Slight lift on hover */
+  box-shadow: 24px 12px 24px 12px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+}
+
+/* Image styling within featured items */
+.featured-image {
+  width: 100%;
+  height: 120px; /* Adjusted height */
+  border-bottom: 2px solid #e1e1e1; /* Slightly thicker border */
+  object-fit: cover; /* Cover the container */
+}
+
+/* Title styling */
+.item-title {
+  font-size: 1.1rem; /* Larger font size */
+  margin-bottom: 12px; /* Margin below title */
+  font-weight: 500; /* Medium weight */
+  color: #333; /* Dark color */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Price styling */
+.featured-item p.price {
+  float: left;
+  text-decoration: line-through;
+  font-size: 1.1rem;
+  font-weight: 500; /* Medium weight */
+  color: #9e9e9e; /* Light grey for original price */
+}
+
+/* Offer price styling */
+.featured-item p.offer-price {
+  font-weight: 700; /* Bold weight */
+  color: #d32f2f; /* Strong red color */
+  font-size: 1.2rem; /* Larger font size */
+}
+
+/* Discount styling */
+.featured-item p.discount {
+  font-size: 1.1rem;
+  color: #388e3c; /* Dark green color */
+  font-weight: 600; /* Semi-bold weight */
+}
+
+/* Icons within the featured item */
+.featured-item-icons {
+  position: absolute;
+  top: 15px;
+  right: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featured-item:hover .featured-item-icons {
+  opacity: 1; /* Show icons on hover */
+}
+
+/* Styling for individual icons */
+.icon {
+  background-color: #fff; /* White background */
+  border: solid 1px #ccc; /* Light grey border */
+  border-radius: 50%; /* Circular icons */
+  padding: 6px; /* Increased padding */
+  cursor: pointer;
+  font-size: 2.1rem; /* Larger icon size */
+  transition: color 0.3s ease;
+}
+
+.heart-icon:hover {
+  color: #e91e63; /* Pink color for heart icon on hover */
+}
+
+.cart-icon:hover {
+  color: #2196f3; /* Blue color for cart icon on hover */
+}
+
+/* Close icon styling */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.4rem; /* Larger font size */
+  cursor: pointer;
+  color: #bbb; /* Light grey color */
+}
+
+.close-icon:hover {
+  color: #e91e63; /* Pink color for close icon on hover */
+}

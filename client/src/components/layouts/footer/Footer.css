@@ -1,0 +1,39 @@
+/* Footer.css */
+
+footer {
+  background-color: #343a40; /* Dark background */
+  color: #f8f9fa; /* Light text color */
+  padding: 20px 0; /* Padding for top and bottom */
+  margin-bottom: 10vh; /* Adds space at the bottom on larger screens */
+
+}
+
+footer p {
+  margin: 0; /* Remove default margin */
+  font-size: 16px; /* Adjust font size */
+}
+
+footer ul {
+  padding: 0; /* Remove default padding */
+  list-style: none; /* Remove bullet points */
+  margin-top: 10px;
+}
+
+footer ul li {
+  display: inline; /* Display list items in a row */
+  margin: 0 10px; /* Add space between list items */
+}
+
+footer ul li a {
+  color: #f8f9fa; /* Light color for links */
+  text-decoration: none; /* Remove underline */
+}
+
+footer ul li a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+@media (min-width: 992px) {
+    .footer {
+      margin-bottom: 1vh; /* Adds space at the bottom on larger screens */
+    }
+  }

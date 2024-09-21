@@ -1,0 +1,78 @@
+/* Category.css */
+.category-wrapper {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+  }
+  
+  .category-title {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center; /* Center text on smaller screens */
+  }
+  
+  .category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds space between input and button */
+  }
+  
+  .category-input,
+  .category-file-input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .category-submit-button {
+    padding: 12px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .category-submit-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .category-wrapper {
+      padding: 15px;
+    }
+  
+    .category-input,
+    .category-file-input,
+    .category-submit-button {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .category-wrapper {
+      padding: 10px;
+    }
+  
+    .category-input,
+    .category-file-input,
+    .category-submit-button {
+      font-size: 0.8rem;
+      padding: 10px;
+    }
+  
+    .category-form {
+      gap: 8px;
+    }
+  }
+  

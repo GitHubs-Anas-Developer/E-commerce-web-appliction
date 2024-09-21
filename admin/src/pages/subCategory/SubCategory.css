@@ -1,0 +1,76 @@
+/* SubCategory.css */
+
+.category-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.category-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.category-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-input,
+.category-select,
+.category-file-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.category-input:focus,
+.category-select:focus,
+.category-file-input:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+}
+
+.category-select {
+  height: 44px;
+  background-color: #f8f9fa;
+}
+
+.category-file-input {
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.category-submit-button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.category-submit-button:hover {
+  background-color: #003d7a;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-submit-button:active {
+  background-color: #002b5c;
+  transform: scale(0.98);
+}

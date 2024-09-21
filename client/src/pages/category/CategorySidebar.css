@@ -1,0 +1,124 @@
+/* Main Container */
+.sidebarcontainer {
+  display: flex;
+  height: 100vh;
+  background-color: #e9ecef;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Sidebar Container */
+.sidebarcategory-container {
+  width: 105px;
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Header */
+.sidebarcategory-header {
+  font-weight: 700;
+  color: #343a40;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6; /* Add border for separation */
+}
+
+/* Sidebar List */
+.sidebarcategory-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Sidebar Category Item */
+.sidebarcategory-item {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack image and text vertically */
+  align-items: center; /* Center items */
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s; /* Add transform transition */
+}
+
+.sidebarcategory-item:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.05); /* Slightly scale on hover */
+}
+
+.sidebarcategory-item.active {
+  color: #fff; /* Active text color */
+  transform: translateY(-3px); /* Lift effect for active item */
+  border-left: 5px solid #0056b3; /* Active state indicator */
+}
+/* Sidebar Category Image */
+.sidebarcategory-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; /* Maintain aspect ratio */
+  margin-bottom: 0.5rem; /* Space between image and name */
+}
+
+/* Sidebar Category Name */
+.sidebarcategory-name {
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+}
+
+/* Sidebar Subcategory List */
+.sidebarcategory-subcategory-list {
+  list-style-type: none;
+  padding-left: 1rem;
+  margin-top: 0.5rem; /* Space from the category name */
+}
+/* Right Content Container */
+.right-div {
+  flex: 1; 
+  padding: 1rem; /* Increased padding for better spacing */
+  background-color: #ffffff; 
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+/* Right Items Header */
+.right-header {
+  font-size: 1.5rem; 
+  margin-bottom: 1rem; 
+  color: #343a40; /* Dark color for better visibility */
+}
+
+/* Right Content Item */
+.right-items {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 1rem; 
+}
+
+/* Individual Item Container */
+.right-item {
+  width: 60px; /* Slightly increased for better visibility */
+  height: 60px; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  transition: transform 0.2s; /* Add transition for scaling */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+
+}
+
+.right-item:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Image Styles */
+.right-item img {
+  margin-top: 2vh;
+  width: 100%; 
+  height: auto; 
+  border-radius: 8px; /* Match the container's border radius */
+
+}.companyBrand{
+  color: red;
+
+}

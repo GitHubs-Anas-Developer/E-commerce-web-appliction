@@ -1,0 +1,136 @@
+.custom-navbar {
+  position: fixed; /* Keep the navbar fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #4e54c8, #8f94fb); /* Gradient background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000; /* Always on top */
+  transition: background 0.3s; /* Smooth background transition */
+}
+
+.brand-logo {
+  font-size: 1rem; /* Logo font size */
+  font-weight: bold; /* Bold logo */
+  color: #fff; /* White text */
+  text-transform: uppercase; /* Uppercase text */
+}
+
+.search-container {
+  flex-grow: 1; /* Use available space */
+  display: flex; /* Flexbox for layout */
+}
+
+.search-input {
+  width: 100%; /* Full width */
+  padding: 12px; /* Padding */
+  border: 1px solid #fff; /* White border */
+  border-radius: 30px; /* Rounded corners */
+  margin-right: 10px; /* Space from button */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  transition: border-color 0.3s; /* Smooth border transition */
+}
+
+.search-input:focus {
+  border-color: #ffd700; /* Gold border on focus */
+  outline: none; /* Remove outline */
+}
+
+.search-btn {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  color: #030303; /* White text */
+  border: none; /* No border */
+  border-radius: 30px; /* Rounded button */
+  padding: 12px 18px; /* Padding */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth transitions */
+}
+
+
+
+.navbar-icons {
+  display: flex; /* Flexbox for alignment */
+  align-items: center; /* Center items vertically */
+}
+
+.nav-links {
+  margin-left: 25px; /* Space between icons */
+  color: #fff; /* White icon color */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+
+
+.navigation-icon {
+  height: 9vh;
+  width: 9vh;
+  border: solid 1px;
+  border-radius: 3vh;
+  padding: 2vh;
+  font-size: 22px; /* Icon size */
+}
+
+.cart-icon {
+  position: relative; /* Position for cart count */
+}
+
+.cart-count {
+  position: absolute; /* Absolute positioning */
+  top: 5px; /* Position above icon */
+  right: 8px; /* Position to the right */
+  background: #ff4d4d; /* Red background */
+  color: white; /* White text */
+  border-radius: 50%; /* Circular count */
+  padding: 3px 6px; /* Padding for count */
+  font-size: 12px; /* Font size for count */
+  font-weight: bold; /* Bold font */
+}
+
+.account-btn {
+  display: flex; /* Flex for icon and text */
+  align-items: center; /* Center items vertically */
+  background: none; /* No background */
+  color: #fff; /* White text */
+  border: solid 1px;
+  font-size: 16px; /* Font size */
+  transition: color 0.3s; /* Smooth transitions */
+}
+
+
+
+.user-icon {
+  font-size: xx-large;
+  margin-right: 5px; /* Space between icon and text */
+}
+
+.dropdown-menu {
+  min-width: 160px; /* Minimum width for dropdown */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white dropdown */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Rounded dropdown */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for dropdown */
+}
+
+.dropdown-item {
+  color: #333; /* Dark item text */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 215, 0, 0.1); /* Light gold on hover */
+}
+
+/* Add padding to body to avoid content being hidden behind the fixed navbar */
+body {
+  padding-top: 100px; /* Adjust based on navbar height */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  @media (max-width: 992px) {
+    .nav-links,
+    .dropdown {
+      display: none;
+    }
+  }
+}
