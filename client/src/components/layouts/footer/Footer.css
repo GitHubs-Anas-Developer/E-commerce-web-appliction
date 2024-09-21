@@ -4,7 +4,7 @@ footer {
   background-color: #343a40; /* Dark background */
   color: #f8f9fa; /* Light text color */
   padding: 20px 0; /* Padding for top and bottom */
-  margin-bottom: 10vh; /* Adds space at the bottom on larger screens */
+  margin-bottom: 5vh; /* Adds space at the bottom on larger screens */
 
 }
 
@@ -33,7 +33,5 @@ footer ul li a:hover {
   text-decoration: underline; /* Underline on hover */
 }
 @media (min-width: 992px) {
-    .footer {
-      margin-bottom: 1vh; /* Adds space at the bottom on larger screens */
-    }
+   
   }

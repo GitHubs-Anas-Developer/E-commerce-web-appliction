@@ -17,7 +17,7 @@
   text-align: center; 
   flex: 0 0 auto; 
   border-radius: 12px; /* Rounded corners */
-  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+  background: linear-gradient(135deg, #342f2b, #ff7e5f); /* Reversed gradient on hover */
   color: #fff; /* White text color */
   transition: transform 0.3s, box-shadow 0.3s, background 0.3s; /* Smooth transitions */
   width: auto; /* Width for each item */
@@ -28,15 +28,15 @@
 .category-item:hover {
   transform: translateY(-15px); /* Lift item on hover */
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
-  background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Reversed gradient on hover */
+  background: linear-gradient(135deg, #342f2b, #ff7e5f); /* Reversed gradient on hover */
 }
 
 /* Style for images within category items */
 .category-img {
   width: 120px; /* Set a fixed width */
   height: 120px; /* Set height for a perfect circle */
-  object-fit: contain; /* Ensure image fits the circle */
-  border-radius: 50%; /* Round image */
+  object-fit: cover; /* Ensure image fits the circle */
+  border-radius: 10%; /* Round image */
   border: 4px solid #fff; /* White border for contrast */
   margin-bottom: 12px; /* Space below the image */
 }
