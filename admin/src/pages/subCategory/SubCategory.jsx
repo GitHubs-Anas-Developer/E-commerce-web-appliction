@@ -1,15 +1,10 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./SubCategory.css";
 
 function SubCategory() {
-
-
- 
-  
-
   const [categoryName, setCategoryName] = useState("");
   const [categoryId, setCategoryId] = useState(""); // Renamed for clarity
   const [files, setFiles] = useState([]);
@@ -48,7 +43,7 @@ function SubCategory() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8050/api/v1/createSubCategory",
+        `${REACT_APP_BACKEND_URL}/api/v1/createSubCategory`,
         formData,
         {
           headers: {
@@ -74,7 +69,7 @@ function SubCategory() {
     const fetchSubCategories = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8050/api/v1/category"
+          `${REACT_APP_BACKEND_URL}/api/v1/category`
         );
         setSubCategories(response.data.category);
         console.log("Fetched subCategories:", response.data.subCategories);

@@ -10,7 +10,7 @@ export const SubCategoryContextProvider = ({ children }) => {
     const fethSubcategory = async () => {
       try {
         const response = await axios(
-          "http://localhost:8050/api/v1/SubCategory"
+          `${REACT_APP_BACKEND_URL}/api/v1/SubCategory`
         );
         setSubcategory(response.data.subCategories);
       } catch (error) {

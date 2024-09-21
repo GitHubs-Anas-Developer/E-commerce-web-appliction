@@ -34,7 +34,7 @@ function Category() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8050/api/v1/createCategory",
+        `${REACT_APP_BACKEND_URL}/api/v1/createCategory`,
         formData,
         {
           headers: {
