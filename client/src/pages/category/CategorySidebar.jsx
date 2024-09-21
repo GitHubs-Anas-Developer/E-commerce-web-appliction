@@ -54,7 +54,7 @@ const SidebarCategory = () => {
           {mobiles.map((item) => (
             <div key={item._id} className="right-item">
               <img 
-                src={`http://localhost:8050/images/${item.images[0]?.filename}`} 
+                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`} 
                 alt={item.name} 
               />
             </div>
