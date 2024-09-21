@@ -13,7 +13,7 @@ export const SubCategoryContextProvider = ({ children }) => {
       if (categoryId) {
         try {
           const response = await axios.get(
-            `http://localhost:8050/api/v1/subcategories/category/${categoryId}`
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/subcategories/category/${categoryId}`
           );
           setMobiles(response.data.subCategories);
           console.log(response.data.subCategories);

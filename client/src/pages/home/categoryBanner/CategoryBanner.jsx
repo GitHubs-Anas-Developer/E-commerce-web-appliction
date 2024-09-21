@@ -11,7 +11,7 @@ function CategoryBanner() {
     <div className="category">
       {category.map((item, index) => (
         <div key={index} className="category-item">
-          <img className="category-img" src={`http://localhost:8050/images/${item.images[0]?.filename}`} alt={item.name} />
+          <img className="category-img" src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`} alt={item.name} />
           <h6>{item.name}</h6>
         </div>
       ))}

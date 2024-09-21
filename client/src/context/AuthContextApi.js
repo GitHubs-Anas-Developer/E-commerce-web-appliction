@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
           const userId = decodedToken._id;
 
           const response = await axios.get(
-            `http://localhost:8050/api/v1/auth/user/${userId}`
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/user/${userId}`
           );
 
           setUser(response.data.user);

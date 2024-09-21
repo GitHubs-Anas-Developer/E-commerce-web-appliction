@@ -27,7 +27,7 @@ const SidebarCategory = () => {
               onClick={() => handleCategoryClick(cate._id)}
             >
               <img
-                src={`http://localhost:8050/images/${cate.images[0]?.filename}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}/images/${cate.images[0]?.filename}`}
                 alt={cate.name}
                 className="sidebarcategory-image"
               />

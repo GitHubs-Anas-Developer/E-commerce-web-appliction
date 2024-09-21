@@ -11,7 +11,7 @@ export const FeatureContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchFeatureProduct = async () => {
       try {
-        const response = await axios.get('https://e-commerce-web-application-1-dru5.onrender.com/api/v1/feature');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/feature`);
         setFeatured(response.data.features);
       } catch (error) {
         setError('Failed to load featured products');
