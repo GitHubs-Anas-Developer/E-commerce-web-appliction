@@ -12,7 +12,7 @@
 .brand-logo {
   font-size: 1rem; /* Logo font size */
   font-weight: bold; /* Bold logo */
-  color: #fff; /* White text */
+  color: #f50404; /* White text */
   text-transform: uppercase; /* Uppercase text */
 }
 
@@ -122,7 +122,7 @@
 
 /* Add padding to body to avoid content being hidden behind the fixed navbar */
 body {
-  padding-top: 100px; /* Adjust based on navbar height */
+  padding-top: 60px; /* Adjust based on navbar height */
 }
 
 /* Responsive design adjustments */
