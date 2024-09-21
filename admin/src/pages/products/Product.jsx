@@ -7,12 +7,9 @@ import SubCategoryContext from "../../context/SubCategoryApi";
 import CategoryContext from "../../context/categoryApi";
 
 function Product() {
-  const { subcategory } = useContext(SubCategoryContext);
+  const { subcategory,cateId } = useContext(SubCategoryContext);
   const { category } = useContext(CategoryContext);
-  console.log(category);
 
-  console.log("subcategory", subcategory);
-  const [initialPrice, setInitialPrice] = useState(0);
   const [newProduct, setNewProduct] = useState({
     title: "",
     price: "",
@@ -23,23 +20,15 @@ function Product() {
     images: [],
     subcategoryId: "",
   });
-
+  
   const [loading, setLoading] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
 
-  // Update initial price and offer price based on price and discount percentage
   useEffect(() => {
-    const discountedPrice =
-      newProduct.price -
-      (newProduct.price * newProduct.discountPercentage) / 100;
-    setInitialPrice(discountedPrice);
-    setNewProduct((prev) => ({
-      ...prev,
-      offerPrice: discountedPrice,
-    }));
+    const discountedPrice = newProduct.price - (newProduct.price * newProduct.discountPercentage) / 100;
+    setNewProduct((prev) => ({ ...prev, offerPrice: discountedPrice }));
   }, [newProduct.price, newProduct.discountPercentage]);
 
-  // Clean up object URLs when component unmounts or imagePreviews changes
   useEffect(() => {
     return () => {
       imagePreviews.forEach((preview) => URL.revokeObjectURL(preview));
@@ -48,38 +37,22 @@ function Product() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setNewProduct((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-
-    // Update newProduct images with existing images plus new files
-    setNewProduct((prevState) => {
-      const updatedImages = [...prevState.images, ...files];
-      return { ...prevState, images: updatedImages };
-    });
-
-    // Generate previews
+    setNewProduct((prev) => ({ ...prev, images: [...prev.images, ...files] }));
     const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+    setImagePreviews((prev) => [...prev, ...newPreviews]);
   };
 
   const handleRemoveImage = (index) => {
-    // Remove image from newProduct images array
-    setNewProduct((prevState) => {
-      const updatedImages = prevState.images.filter((_, i) => i !== index);
-      return { ...prevState, images: updatedImages };
+    setNewProduct((prev) => {
+      const updatedImages = prev.images.filter((_, i) => i !== index);
+      return { ...prev, images: updatedImages };
     });
-
-    // Remove preview from imagePreviews array
-    setImagePreviews((prevPreviews) => {
-      const updatedPreviews = prevPreviews.filter((_, i) => i !== index);
-      return updatedPreviews;
-    });
+    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleAddProduct = async (e) => {
@@ -90,13 +63,10 @@ function Product() {
     }
 
     setLoading(true);
-
     const formData = new FormData();
     Object.keys(newProduct).forEach((key) => {
       if (key === "images") {
-        newProduct.images.forEach((file) => {
-          formData.append("images", file);
-        });
+        newProduct.images.forEach((file) => formData.append("images", file));
       } else {
         formData.append(key, newProduct[key]);
       }
@@ -104,9 +74,7 @@ function Product() {
 
     try {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/createProduct`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Product added successfully!");
       setNewProduct({
@@ -129,10 +97,10 @@ function Product() {
   };
 
   return (
-    <div className="feature-container">
+    <div className="products-container">
       <h2>Add New Product</h2>
-      <form onSubmit={handleAddProduct} className="feature-form">
-        <div className="input-group">
+      <form onSubmit={handleAddProduct} className="products-form">
+        <div className="products-input-group">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -144,7 +112,7 @@ function Product() {
             required
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="price">Price</label>
           <input
             type="number"
@@ -156,7 +124,7 @@ function Product() {
             required
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="discountPercentage">Discount Percentage</label>
           <input
             type="number"
@@ -168,7 +136,7 @@ function Product() {
             required
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="offerPrice">Offer Price</label>
           <input
             type="number"
@@ -176,12 +144,10 @@ function Product() {
             name="offerPrice"
             placeholder="Enter offer price"
             value={newProduct.offerPrice}
-            onChange={handleInputChange}
-            required
             disabled
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="about">About</label>
           <textarea
             id="about"
@@ -191,7 +157,7 @@ function Product() {
             onChange={handleInputChange}
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
@@ -201,7 +167,7 @@ function Product() {
             onChange={handleInputChange}
           />
         </div>
-        <div className="input-group">
+        <div className="products-input-group">
           <label htmlFor="images">Images</label>
           <input
             type="file"
@@ -212,45 +178,48 @@ function Product() {
             required
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="subcategoryId">Category</label>
-
-          <select name="" id="">
-            <option value="" desa></option>
+        <div className="products-input-group">
+          <label htmlFor="categoryId">Category</label>
+          <select
+            id="categoryId"
+            name="categoryId"
+            value={newProduct.categoryId}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select Category</option>
+            {category.map((cat) => (
+              <option key={cat._id} value={cat._id} onClick={()=>cateId(cat._id)}>
+                {cat.name}
+              </option>
+            ))}
           </select>
-          <input
-            type="text"
+        </div>
+        <div className="products-input-group">
+          <label htmlFor="subcategoryId">Subcategory</label>
+          <select
             id="subcategoryId"
             name="subcategoryId"
-            placeholder="Enter subcategory ID"
             value={newProduct.subcategoryId}
             onChange={handleInputChange}
             required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="subcategoryId">Subcategory ID</label>
-
-          <select name="" id="">
-            <option value="" desa></option>
+          >
+            <option value="">Select Subcategory</option>
+            {subcategory.map((sub) => (
+              <option key={sub._id} value={sub._id} >
+                {sub.name}
+              </option>
+            ))}
           </select>
-          <input
-            type="text"
-            id="subcategoryId"
-            name="subcategoryId"
-            placeholder="Enter subcategory ID"
-            value={newProduct.subcategoryId}
-            onChange={handleInputChange}
-            required
-          />
         </div>
-        <div className="image-previews">
+
+        <div className="products-previews">
           {imagePreviews.map((preview, index) => (
-            <div key={index} className="preview-container">
+            <div key={index} className="products-preview-container">
               <img
                 src={preview}
                 alt={`preview ${index}`}
-                className="preview-image"
+                className="products-preview-image"
               />
               <button
                 type="button"
@@ -262,7 +231,7 @@ function Product() {
             </div>
           ))}
         </div>
-        <button type="submit" className="submit-button" disabled={loading}>
+        <button type="submit" className="products-button" disabled={loading}>
           {loading ? "Adding..." : "Add Product"}
         </button>
       </form>

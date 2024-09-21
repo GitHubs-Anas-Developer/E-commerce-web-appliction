@@ -97,9 +97,11 @@
 }
 
 /* Individual Item Container */
-.right-item {
-  width: 75px; /* Slightly increased for better visibility */
-  height: 75px; 
+.right-item {  margin-left: auto;
+  margin-right: auto;
+
+  width: 80px; /* Slightly increased for better visibility */
+  height: 80px; 
   border-radius: 8px; 
   overflow: hidden; 
   transition: transform 0.2s; /* Add transition for scaling */

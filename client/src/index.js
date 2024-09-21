@@ -9,6 +9,7 @@ import { AuthContextProvider } from "./context/AuthContextApi";
 import { FeatureContextProvider } from "./context/FeatureContextApi";
 import { CategoryContextProvider } from "./context/CategoryApi";
 import { SubCategoryContextProvider } from "./context/SubCategoryApi";
+import { ProductContextProvider } from "./context/AllProducts";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +20,9 @@ root.render(
           <FeatureContextProvider>
             <CategoryContextProvider>
               <SubCategoryContextProvider>
-                <App />
+                <ProductContextProvider>
+                  <App />
+                </ProductContextProvider>
               </SubCategoryContextProvider>
             </CategoryContextProvider>
           </FeatureContextProvider>

@@ -5,8 +5,10 @@ import SubCategoryContext from "../../context/SubCategoryApi";
 
 const SidebarCategory = () => {
   const { category } = useContext(CategoryContext);
-  const { mobiles, openCategory, toggleCategory } = useContext(SubCategoryContext);
-  
+  const { mobiles, openCategory, toggleCategory } =
+    useContext(SubCategoryContext);
+  console.log();
+
   // State to track the active category
   const [activeCategory, setActiveCategory] = useState(null);
 
@@ -23,7 +25,9 @@ const SidebarCategory = () => {
           {category.map((cate) => (
             <li
               key={cate._id}
-              className={`sidebarcategory-item ${activeCategory === cate._id ? 'active' : ''}`}
+              className={`sidebarcategory-item ${
+                activeCategory === cate._id ? "active" : ""
+              }`}
               onClick={() => handleCategoryClick(cate._id)}
             >
               <img
@@ -53,9 +57,9 @@ const SidebarCategory = () => {
         <div className="right-items">
           {mobiles.map((item) => (
             <div key={item._id} className="right-item">
-              <img 
-                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`} 
-                alt={item.name} 
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
+                alt={item.name}
               />
             </div>
           ))}
