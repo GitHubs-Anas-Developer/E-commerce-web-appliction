@@ -24,7 +24,7 @@
   .product-image-display img {
     width: 100%;
     max-height: 400px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
   }
   
@@ -33,6 +33,7 @@
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
+    flex-wrap: wrap; /* Allow thumbnails to wrap */
   }
   
   .product-thumbnail {
@@ -53,48 +54,44 @@
     border-radius: 10px;
   }
   
-  .product-title {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .product-rating-reviews {
+  .product-details--reviews {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
   }
   
-  .product-rating {
+  .product-details-rating {
     font-size: 1.2rem;
-    color: #ff9800; /* Star color */
+    color: #ff9800;
   }
   
-  .product-price-info {
+  .product-details-price-info {
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
   }
   
-  .product-current-price {
+  .product-details-current-price {
     font-size: 1.5rem;
-    color: #e91e63; /* Price color */
+    color: #e91e63;
   }
   
-  .product-original-price {
+  .product-details-original-price {
     text-decoration: line-through;
     color: #999;
   }
   
-  .product-discount-info {
+  .product-details-discount-info {
     font-weight: bold;
-    color: #4caf50; /* Discount color */
+    color: #4caf50;
   }
   
-  .product-actions {
+  .product-details-actions {
     display: flex;
     gap: 15px;
     margin-bottom: 20px;
+    flex-direction: column; /* Stack buttons vertically on small screens */
   }
   
   .btn {
@@ -106,29 +103,33 @@
     transition: background-color 0.3s;
   }
   
-  .product-add-to-cart {
-    background-color: #ff9800; /* Add to cart color */
+  .product-details-add-to-cart {
+    background-color: #ff9800;
     color: white;
   }
   
-  .product-add-to-cart:hover {
-    background-color: #e68900; /* Darker shade on hover */
+  .product-details-add-to-cart:hover {
+    background-color: #e68900;
   }
   
-  .product-buy-now {
-    background-color: #2196f3; /* Buy now color */
+  .product-details-buy-now {
+    background-color: #2196f3;
     color: white;
   }
   
-  .product-buy-now:hover {
-    background-color: #1976d2; /* Darker shade on hover */
+  .product-details-buy-now:hover {
+    background-color: #1976d2;
   }
   
-  .product-description {
+  .product-details-description {
     margin-top: 20px;
   }
   
-  .product-features-list {
+  .product-details-about {
+    margin-bottom: 10px;
+  }
+  
+  .product-details-list {
     margin-top: 20px;
   }
   
@@ -140,6 +141,36 @@
   @media (max-width: 768px) {
     .product-details-wrapper {
       flex-direction: column;
+    }
+  
+    .product-details-actions {
+      flex-direction: column;
+      align-items: stretch; /* Ensure buttons take full width */
+    }
+  
+    .product-thumbnail {
+      width: 60px; /* Adjust thumbnail size for smaller screens */
+      height: 60px;
+    }
+  
+    .product-details-title {
+      font-size: 2rem; /* Adjust title size */
+    }
+  
+    .product-details-rating,
+    .product-details-current-price {
+      font-size: 1.2rem; /* Adjust sizes for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-details-title {
+      font-size: 1.8rem; /* Further adjust for mobile */
+    }
+  
+    .product-details-rating,
+    .product-details-current-price {
+      font-size: 1rem; /* Further adjust for mobile */
     }
   }
   

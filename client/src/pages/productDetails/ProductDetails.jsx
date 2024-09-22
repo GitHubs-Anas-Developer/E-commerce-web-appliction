@@ -46,26 +46,26 @@ function ProductDetails() {
 
         {/* Product Details Section */}
         <div className="product-details-info">
-          <h2 className="product-title">{product.title}</h2>
-          <div className="product-rating-reviews">
-            <span className="product-rating">{product.rating} ★</span>
-            <span className="product-reviews">{product.reviews} Ratings</span>
+          <h2 className="product-details-title">{product.title}</h2>
+          <div className="product-details--reviews">
+            <span className="product-details-rating">{product.rating} ★</span>
+            <span className="product-details-reviews">{product.reviews} Ratings</span>
           </div>
-          <div className="product-price-info">
-            <span className="product-current-price">₹{product.price}</span>
-            <span className="product-original-price">₹{product.offerPrice}</span>
-            <span className="product-discount-info">{product.discountPercentage}% off</span>
+          <div className="product-details-price-info">
+            <span className="product-details-current-price">₹{product.price}</span>
+            <span className="product-details-original-price">₹{product.offerPrice}</span>
+            <span className="product-details-discount-info">{product.discountPercentage}% off</span>
           </div>
-          <div className="product-actions">
-            <button className="btn product-add-to-cart">Add to Cart</button>
-            <button className="btn product-buy-now">Buy Now</button>
+          <div className="product-details-actions">
+            <button className="btn product-details-add-to-cart">Add to Cart</button>
+            <button className="btn product-details-buy-now">Buy Now</button>
           </div>
-          <div className="product-description">
+          <div className="product-details-description">
             <h3>About this Product:</h3>
-            <p className="product-about">{product.about}</p>
-            <p className="product-full-description">{product.description}</p>
+            <p className="product-details-about">{product.about}</p>
+            <p className="product-details-description">{product.description}</p>
           </div>
-          <div className="product-features-list">
+          <div className="product-details-list">
             <h3>Key Features:</h3>
             <ul className="product-features">
               {product.features &&
