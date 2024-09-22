@@ -13,7 +13,15 @@ const createProduct = async (req, res) => {
     } = req.body;
 
     // Check for required fields
-    if (!title || !price || !offerPrice || !discountPercentage || !subcategoryId || !req.files || req.files.length === 0) {
+    if (
+      !title ||
+      !price ||
+      !offerPrice ||
+      !discountPercentage ||
+      !subcategoryId ||
+      !req.files ||
+      req.files.length === 0
+    ) {
       return res.status(400).json({
         success: false,
         message: "All fields are required, including image files",
@@ -25,10 +33,15 @@ const createProduct = async (req, res) => {
     const offerPriceNum = parseFloat(offerPrice);
     const discountPercentageNum = parseFloat(discountPercentage);
 
-    if (isNaN(priceNum) || isNaN(offerPriceNum) || isNaN(discountPercentageNum)) {
+    if (
+      isNaN(priceNum) ||
+      isNaN(offerPriceNum) ||
+      isNaN(discountPercentageNum)
+    ) {
       return res.status(400).json({
         success: false,
-        message: "Price, offer price, and discount percentage must be valid numbers",
+        message:
+          "Price, offer price, and discount percentage must be valid numbers",
       });
     }
 
@@ -92,5 +105,30 @@ const getProductAll = async (req, res) => {
     });
   }
 };
+const getOneProduct = async (req, res) => {
+  try {
+    const { id } = req.params; // Correctly destructuring 'id' from req.params
+    console.log(id);
 
-module.exports = { createProduct, getProductAll };
+    const product = await productModel.findById(id); // Passing 'id' to findById
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      product: product,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createProduct, getProductAll, getOneProduct };

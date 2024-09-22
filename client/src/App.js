@@ -9,6 +9,7 @@ import Footer from "./components/layouts/footer/Footer";
 import BottomNavbar from "./components/layouts/bottomNavbar/BottomNabvar";
 import CategorySidebar from "./pages/category/CategorySidebar";
 import Profile from "./pages/profile/Profile";
+import ProductDetails from "./pages/productDetails/ProductDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/category" element={<CategorySidebar />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/productDetails/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
       <BottomNavbar />

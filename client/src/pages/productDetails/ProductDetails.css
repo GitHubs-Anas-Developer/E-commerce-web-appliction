@@ -1,0 +1,124 @@
+.product-details-container {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .product-images {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-right: 20px;
+  }
+  
+  .image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    object-fit: contain;
+  }
+  
+  .thumbnail.active {
+    border: 2px solid #007bff;
+  }
+  
+  .main-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+  }
+  
+  .product-info {
+    width: 60%;
+  }
+  
+  .product-info h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .rating-reviews {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .rating {
+    background-color: #388e3c;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  
+  .price {
+    font-size: 22px;
+    color: #d32f2f;
+    margin-bottom: 20px;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #9e9e9e;
+  }
+  
+  .discount {
+    color: #388e3c;
+    margin-left: 10px;
+  }
+  
+  .features {
+    margin-bottom: 20px;
+  }
+  
+  .features h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .actions .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-to-cart {
+    background-color: #ff9f00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #ffa31a;
+  }
+  
+  .buy-now {
+    background-color: #fb641b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .buy-now:hover {
+    background-color: #ff6b1b;
+  }
+  

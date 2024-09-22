@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ProductContext from "../../context/AllProducts";
 import "./Products.css"; // Custom styles
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 function Products() {
   const { productsAll, loading } = useContext(ProductContext);
@@ -37,30 +38,32 @@ function Products() {
       <div className="product-grid">
         {productsAll.length > 0 ? (
           productsAll.map((product) => (
-            <div key={product._id} className="product-item">
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
-                alt={product.title}
-                className="product-image"
-              />
-              <h6 className="item-title">{product.title}</h6>
-              {product.offerPrice && (
-                <p className="price">{formatPrice(product.price)}</p>
-              )}
-              {product.discountPercentage && (
-                <p className="discount">
-                  {formatDiscount(product.discountPercentage)} OFF
+            <Link to={`/productDetails/${product._id}`}>
+              <div key={product._id} className="product-item">
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
+                  alt={product.title}
+                  className="product-image"
+                />
+                <h6 className="item-title">{product.title}</h6>
+                {product.offerPrice && (
+                  <p className="price">{formatPrice(product.price)}</p>
+                )}
+                {product.discountPercentage && (
+                  <p className="discount">
+                    {formatDiscount(product.discountPercentage)} OFF
+                  </p>
+                )}
+                <p className="offer-price">
+                  {formatOfferPrice(product.offerPrice)}
                 </p>
-              )}
-              <p className="offer-price">
-                {formatOfferPrice(product.offerPrice)}
-              </p>
 
-              <div className="product-item-icons">
-                <CiHeart className="icon heart-icon" />
-                <CiShoppingCart className="icon cart-icon" />
+                <div className="product-item-icons">
+                  <CiHeart className="icon heart-icon" />
+                  <CiShoppingCart className="icon cart-icon" />
+                </div>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No products available.</p>
