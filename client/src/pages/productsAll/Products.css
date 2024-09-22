@@ -1,39 +1,52 @@
-.product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  padding: 20px;
-}
-
-.product-card {
-  width: 240px; /* Adjust width for uniformity */
-  border: 1px solid #ddd;
-  border-radius: 8px; /* Rounded corners */
+.product-container {
   padding: 10px;
+}
+
+/* Title styling */
+.product-container h2 {
   text-align: center;
-  margin: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  transition: transform 0.2s, box-shadow 0.2s; /* Transition for hover effect */
-  background-color: #fff; /* White background */
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  color: #444;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 600;
 }
 
-.product-card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+/* Flex container for grid items */
+.product-grid {
+  display: flex;
+  justify-content: start; /* Center items horizontally */
+  gap: 10px; /* Gap between items */
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
 }
 
+/* Styling for each product item */
+.product-item {
+  background: #fff;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  max-width: 180px; /* Maximum width */
+  width: 100%; /* Full width within the flex item */
+  flex: 1 0 calc(25% - 20px); /* Responsive item width */
+  position: relative;
+}
+
+/* Hover effect for product items */
+
+
+/* Image styling within product items */
 .product-image {
-  width: 100%; /* Full width for images */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 5px; /* Rounded corners for images */
-  margin-bottom: 10px; /* Space below image */
+  width: 100%;
+  height: 120px; /* Adjusted height */
+  border-bottom: 2px solid #e1e1e1; /* Slightly thicker border */
+  object-fit: contain; /* Cover the container */
 }
 
-.product-details {
-  color: #333; /* Dark color for text */
-}
-
-.product-title {
+/* Title styling */
+.item-title {
   font-size: 1.1rem; /* Larger font size */
   margin-bottom: 12px; /* Margin below title */
   font-weight: 500; /* Medium weight */
@@ -43,50 +56,72 @@
   white-space: nowrap;
 }
 
-.product-price {
-  color: #28a745; /* Green for regular price */
-  font-size: 1.2rem; /* Slightly larger font size */
+/* Price styling */
+.product-item p.price {
+  text-decoration: line-through;
+  font-size: 1.1rem;
+  font-weight: 500; /* Medium weight */
+  color: #9e9e9e; /* Light grey for original price */
 }
 
-.offer-price {
-  color: #dc3545; /* Red for offer price */
-  font-weight: bold; /* Bold for emphasis */
-  text-decoration: line-through; /* Strikethrough for original price */
-  font-size: 0.9rem; /* Smaller font size */
+/* Offer price styling */
+.product-item p.offer-price {
+  font-weight: 700; /* Bold weight */
+  color: #d32f2f; /* Strong red color */
+  font-size: 1.2rem; /* Larger font size */
 }
 
-.discount {
-  color: #ff5722; /* Orange for discount percentage */
-  font-weight: bold; /* Bold for clarity */
-  margin: 5px 0; /* Space around discount */
-  font-size: 0.9rem; /* Smaller font size */
+/* Discount styling */
+.product-item p.discount {
+  font-size: 1.1rem;
+  color: #388e3c; /* Dark green color */
+  font-weight: 600; /* Semi-bold weight */
 }
 
-.add-to-cart {
-  background-color: #f0c14b; /* Amazon's signature yellow */
-  border: 1px solid #a88734; /* Border color */
-  padding: 10px 15px; /* Padding for button */
-  border-radius: 5px; /* Rounded corners for button */
+/* Icons within the product item */
+.product-item-icons {
+  position: absolute;
+  top: 15px;
+  right: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-item:hover .product-item-icons {
+  opacity: 1; /* Show icons on hover */
+}
+
+/* Styling for individual icons */
+.icon {
+  background-color: #fff; /* White background */
+  border: solid 1px #ccc; /* Light grey border */
+  border-radius: 50%; /* Circular icons */
+  padding: 6px; /* Increased padding */
   cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem; /* Smaller font size */
-  transition: background-color 0.3s; /* Smooth transition */
+  font-size: 2.1rem; /* Larger icon size */
+  transition: color 0.3s ease;
 }
 
-.add-to-cart:hover {
-  background-color: #ddb347; /* Darker yellow on hover */
-}
-.add-to-wishlist {
-  background-color: #ffcc00; /* Yellow background */
-  color: #333; /* Dark text */
-  border: none; /* No border */
-  padding: 10px 15px; /* Padding */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
-  transition: background-color 0.3s; /* Smooth transition */
-  margin-top: 10px; /* Space above the button */
+.heart-icon:hover {
+  color: #e91e63; /* Pink color for heart icon on hover */
 }
 
-.add-to-wishlist:hover {
-  background-color: #e6b800; /* Darker yellow on hover */
+.cart-icon:hover {
+  color: #2196f3; /* Blue color for cart icon on hover */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .product-item {
+    flex: 1 0 calc(50% - 20px); /* Two items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-item {
+    flex: 1 0 100%; /* One item per row */
+  }
 }
