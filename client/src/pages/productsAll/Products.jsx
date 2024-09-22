@@ -49,14 +49,15 @@ function Products() {
                 {product.offerPrice && (
                   <p className="price">{formatPrice(product.price)}</p>
                 )}
+                <p className="offer-price">
+                  {formatOfferPrice(product.offerPrice)}
+                </p>
+                
                 {product.discountPercentage && (
                   <p className="discount">
                     {formatDiscount(product.discountPercentage)} OFF
                   </p>
                 )}
-                <p className="offer-price">
-                  {formatOfferPrice(product.offerPrice)}
-                </p>
 
                 <div className="product-item-icons">
                   <CiHeart className="icon heart-icon" />

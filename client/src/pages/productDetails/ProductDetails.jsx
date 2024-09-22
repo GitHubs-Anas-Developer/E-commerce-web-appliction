@@ -6,7 +6,6 @@ import ProductContext from "../../context/AllProducts"; // Import your context
 function ProductDetails() {
   const { id } = useParams(); // Get the product ID from the URL
   const { productId, product } = useContext(ProductContext); // Destructure context values
-  console.log(product); // Debugging line to check the product data
 
   useEffect(() => {
     // Call the productId function and pass the ID as an argument
@@ -22,23 +21,23 @@ function ProductDetails() {
 
   return (
     <div className="product-details">
-      <h1 className="page-head">Product Details</h1>
-      <div className="product-details-container">
+      <h1 className="product-details-title">Product Details</h1>
+      <div className="product-details-wrapper">
         {/* Product Images Section */}
-        <div className="product-images">
-          <div className="main-image">
+        <div className="product-details-images">
+          <div className="product-image-display">
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[selectedImage]}`}
+              src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[selectedImage].filename}`} // Use the selected image filename
               alt="Selected product"
             />
           </div>
-          <div className="image-gallery">
+          <div className="product-image-gallery">
             {product.images.map((img, index) => (
               <img
-                key={index}
-                src={`${process.env.REACT_APP_BACKEND_URL}/images/${img}`}
+                key={img._id}
+                src={`${process.env.REACT_APP_BACKEND_URL}/images/${img.filename}`} // Use the filename
                 alt={`product-img-${index}`}
-                className={`thumbnail ${index === selectedImage ? "active" : ""}`}
+                className={`product-thumbnail ${index === selectedImage ? "active" : ""}`}
                 onClick={() => setSelectedImage(index)}
               />
             ))}
@@ -46,35 +45,34 @@ function ProductDetails() {
         </div>
 
         {/* Product Details Section */}
-        <div className="product-info">
-          <h2>{product.title}</h2>
-          <div className="rating-reviews">
-            <span className="rating">{product.rating} ★</span>
-            <span>{product.reviews} Ratings</span>
+        <div className="product-details-info">
+          <h2 className="product-title">{product.title}</h2>
+          <div className="product-rating-reviews">
+            <span className="product-rating">{product.rating} ★</span>
+            <span className="product-reviews">{product.reviews} Ratings</span>
           </div>
-          <div className="price">
-            <span className="current-price">₹{product.price}</span>
-            <span className="original-price">₹{product.offerPrice}</span>
-            <span className="discount">{product.discountPercentage}% off</span>
+          <div className="product-price-info">
+            <span className="product-current-price">₹{product.price}</span>
+            <span className="product-original-price">₹{product.offerPrice}</span>
+            <span className="product-discount-info">{product.discountPercentage}% off</span>
           </div>
-          <div className="about">
+          <div className="product-actions">
+            <button className="btn product-add-to-cart">Add to Cart</button>
+            <button className="btn product-buy-now">Buy Now</button>
+          </div>
+          <div className="product-description">
             <h3>About this Product:</h3>
-            <p>{product.about}</p>
-            
-            <p>{product.description}</p>
+            <p className="product-about">{product.about}</p>
+            <p className="product-full-description">{product.description}</p>
           </div>
-          <div className="features">
+          <div className="product-features-list">
             <h3>Key Features:</h3>
-            <ul>
+            <ul className="product-features">
               {product.features &&
                 product.features.map((feature, index) => (
                   <li key={index}>{feature}</li>
                 ))}
             </ul>
-          </div>
-          <div className="actions">
-            <button className="btn add-to-cart">Add to Cart</button>
-            <button className="btn buy-now">Buy Now</button>
           </div>
         </div>
       </div>

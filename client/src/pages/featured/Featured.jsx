@@ -40,7 +40,7 @@ function Featured() {
               <div key={item._id} className="featured-item">
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
-                  alt={item.title}
+                  alt={""}
                   className="featured-image"
                 />
                 <h6 className="item-title">{item.title}</h6>

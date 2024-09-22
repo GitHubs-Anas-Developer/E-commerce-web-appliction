@@ -4,141 +4,142 @@
     margin: auto;
   }
   
-  .page-head {
+  .product-details-title {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #333;
   }
   
-  .product-details-container {
+  .product-details-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
   }
   
-  .product-images {
-    flex: 1;
-    max-width: 600px;
-  }
-  
-  .main-image {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  
-  .main-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .image-gallery {
+  .product-details-images {
     display: flex;
+    flex-direction: column;
+  }
+  
+  .product-image-display img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .product-image-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-top: 10px;
   }
   
-  .image-gallery img {
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
+  .product-thumbnail {
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     border-radius: 5px;
-    transition: transform 0.2s;
+    transition: transform 0.3s;
   }
   
-  .image-gallery img:hover {
-    transform: scale(1.1);
+  .product-thumbnail.active {
+    border: 2px solid #007bff;
   }
   
-  .thumbnail.active {
-    border: 2px solid #007bff; /* Highlight active thumbnail */
+  .product-details-info {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
   }
   
-  .product-info {
-    flex: 1;
-    max-width: 600px;
+  .product-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
   
-  .product-info h2 {
-    font-size: 1.5em;
-    color: #333;
-  }
-  
-  .rating-reviews {
-    margin: 10px 0;
-    font-size: 1em;
-  }
-  
-  .price {
+  .product-rating-reviews {
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    gap: 10px;
+    margin-bottom: 15px;
   }
   
-  .current-price {
-    font-size: 1.5em;
-    color: #e63946; /* Price color */
-    margin-right: 10px;
+  .product-rating {
+    font-size: 1.2rem;
+    color: #ff9800; /* Star color */
   }
   
-  .original-price {
+  .product-price-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .product-current-price {
+    font-size: 1.5rem;
+    color: #e91e63; /* Price color */
+  }
+  
+  .product-original-price {
     text-decoration: line-through;
     color: #999;
-    margin-right: 10px;
   }
   
-  .discount {
-    background: #ffe6e6;
-    color: #e63946;
-    padding: 5px 10px;
-    border-radius: 5px;
+  .product-discount-info {
+    font-weight: bold;
+    color: #4caf50; /* Discount color */
   }
   
-  .about {
-    margin: 20px 0;
-  }
-  
-  .features {
-    margin: 20px 0;
-  }
-  
-  .features ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
-  
-  .actions {
-    margin-top: 20px;
+  .product-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
   }
   
   .btn {
     padding: 10px 15px;
-    font-size: 1em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
-    transition: background 0.3s;
+    font-size: 1rem;
+    transition: background-color 0.3s;
   }
   
-  .btn.add-to-cart {
-    background-color: #007bff;
+  .product-add-to-cart {
+    background-color: #ff9800; /* Add to cart color */
     color: white;
   }
   
-  .btn.add-to-cart:hover {
-    background-color: #0056b3;
+  .product-add-to-cart:hover {
+    background-color: #e68900; /* Darker shade on hover */
   }
   
-  .btn.buy-now {
-    background-color: #e63946;
+  .product-buy-now {
+    background-color: #2196f3; /* Buy now color */
     color: white;
   }
   
-  .btn.buy-now:hover {
-    background-color: #c82a2a;
+  .product-buy-now:hover {
+    background-color: #1976d2; /* Darker shade on hover */
+  }
+  
+  .product-description {
+    margin-top: 20px;
+  }
+  
+  .product-features-list {
+    margin-top: 20px;
+  }
+  
+  .product-features {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .product-details-wrapper {
+      flex-direction: column;
+    }
   }
   
