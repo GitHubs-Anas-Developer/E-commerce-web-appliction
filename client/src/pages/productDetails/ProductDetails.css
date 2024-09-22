@@ -1,124 +1,144 @@
-.product-details-container {
-    display: flex;
+.product-details {
     padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .page-head {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .product-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   
   .product-images {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    padding-right: 20px;
+    flex: 1;
+    max-width: 600px;
   }
   
-  .image-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .thumbnail {
-    width: 60px;
-    height: 60px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    object-fit: contain;
-  }
-  
-  .thumbnail.active {
-    border: 2px solid #007bff;
+  .main-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
   }
   
   .main-image img {
     width: 100%;
-    height: 400px;
-    object-fit: contain;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-gallery {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .image-gallery img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s;
+  }
+  
+  .image-gallery img:hover {
+    transform: scale(1.1);
+  }
+  
+  .thumbnail.active {
+    border: 2px solid #007bff; /* Highlight active thumbnail */
   }
   
   .product-info {
-    width: 60%;
+    flex: 1;
+    max-width: 600px;
   }
   
   .product-info h2 {
-    font-size: 24px;
+    font-size: 1.5em;
     color: #333;
-    margin-bottom: 10px;
   }
   
   .rating-reviews {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-  
-  .rating {
-    background-color: #388e3c;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 1em;
   }
   
   .price {
-    font-size: 22px;
-    color: #d32f2f;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .current-price {
+    font-size: 1.5em;
+    color: #e63946; /* Price color */
+    margin-right: 10px;
   }
   
   .original-price {
     text-decoration: line-through;
-    margin-left: 10px;
-    font-size: 18px;
-    color: #9e9e9e;
+    color: #999;
+    margin-right: 10px;
   }
   
   .discount {
-    color: #388e3c;
-    margin-left: 10px;
+    background: #ffe6e6;
+    color: #e63946;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .about {
+    margin: 20px 0;
   }
   
   .features {
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
   
-  .features h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+  .features ul {
+    list-style-type: disc;
+    padding-left: 20px;
   }
   
   .actions {
-    display: flex;
-    gap: 15px;
+    margin-top: 20px;
   }
   
-  .actions .btn {
-    padding: 10px 20px;
-    font-size: 16px;
+  .btn {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
+    transition: background 0.3s;
   }
   
-  .add-to-cart {
-    background-color: #ff9f00;
+  .btn.add-to-cart {
+    background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
   }
   
-  .add-to-cart:hover {
-    background-color: #ffa31a;
+  .btn.add-to-cart:hover {
+    background-color: #0056b3;
   }
   
-  .buy-now {
-    background-color: #fb641b;
+  .btn.buy-now {
+    background-color: #e63946;
     color: white;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
   }
   
-  .buy-now:hover {
-    background-color: #ff6b1b;
+  .btn.buy-now:hover {
+    background-color: #c82a2a;
   }
   
