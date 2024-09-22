@@ -3,7 +3,7 @@ import ProductContext from "../../context/AllProducts";
 import "./Products.css";
 
 function Products() {
-  const { productsAll, loading } = useContext(ProductContext);
+  const { productsAll, loading, addToWishlist } = useContext(ProductContext);
 
   if (loading) return <p>Loading products...</p>;
 
@@ -13,17 +13,27 @@ function Products() {
         productsAll.map((product) => (
           <div key={product._id} className="product-card">
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0].filename}`} // Update for production
+              src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0].filename}`}
               alt={product.title}
-              onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/placeholder-image.jpg'; }}
+              className="product-image"
             />
-            <h3>{product.title}</h3>
-            <p>Price: {product.price}</p>
-            {product.offerPrice && (
-              <p className="offer-price">Offer: {product.offerPrice}</p>
-            )}
-            <p className="discount">Discount: {product.discountPercentage}%</p>
-            <p className="description">{product.description}</p>
+            <div className="product-details">
+              <h6 className="product-title">{product.title}</h6>
+              <p className="product-price">₹{product.price}</p>
+              {product.offerPrice && (
+                <p className="offer-price">₹{product.offerPrice}</p>
+              )}
+              {product.discountPercentage && (
+                <p className="discount">{product.discountPercentage}% OFF</p>
+              )}
+              <button className="add-to-cart">Add to Cart</button>
+              <button
+                className="add-to-wishlist"
+                onClick={() => addToWishlist(product)}
+              >
+                Add to Wishlist
+              </button>
+            </div>
           </div>
         ))
       ) : (
