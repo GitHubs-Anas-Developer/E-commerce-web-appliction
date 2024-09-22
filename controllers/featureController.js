@@ -88,7 +88,6 @@ const getFeatureAll = async (req, res) => {
   }
 };
 
-
 module.exports = {
   createFeature,
   getFeatureAll,

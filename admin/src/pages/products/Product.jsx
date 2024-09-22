@@ -7,7 +7,7 @@ import SubCategoryContext from "../../context/SubCategoryApi";
 import CategoryContext from "../../context/categoryApi";
 
 function Product() {
-  const { subcategory,cateId } = useContext(SubCategoryContext);
+  const { subcategory, cateId } = useContext(SubCategoryContext);
   const { category } = useContext(CategoryContext);
 
   const [newProduct, setNewProduct] = useState({
@@ -20,13 +20,16 @@ function Product() {
     images: [],
     subcategoryId: "",
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
 
   useEffect(() => {
-    const discountedPrice = newProduct.price - (newProduct.price * newProduct.discountPercentage) / 100;
-    setNewProduct((prev) => ({ ...prev, offerPrice: discountedPrice }));
+    if (newProduct.price && newProduct.discountPercentage) {
+      const discountedPrice =
+        newProduct.price - (newProduct.price * newProduct.discountPercentage) / 100;
+      setNewProduct((prev) => ({ ...prev, offerPrice: discountedPrice }));
+    }
   }, [newProduct.price, newProduct.discountPercentage]);
 
   useEffect(() => {
@@ -42,9 +45,13 @@ function Product() {
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-    setNewProduct((prev) => ({ ...prev, images: [...prev.images, ...files] }));
+    setNewProduct((prevState) => ({
+      ...prevState,
+      images: [...prevState.images, ...files],
+    }));
+
     const newPreviews = files.map((file) => URL.createObjectURL(file));
-    setImagePreviews((prev) => [...prev, ...newPreviews]);
+    setImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   };
 
   const handleRemoveImage = (index) => {
@@ -53,6 +60,17 @@ function Product() {
       return { ...prev, images: updatedImages };
     });
     setImagePreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const isFormValid = () => {
+    return (
+      newProduct.title &&
+      newProduct.price &&
+      newProduct.discountPercentage >= 0 &&
+      newProduct.discountPercentage <= 100 &&
+      newProduct.subcategoryId &&
+      newProduct.images.length > 0
+    );
   };
 
   const handleAddProduct = async (e) => {
@@ -73,27 +91,35 @@ function Product() {
     });
 
     try {
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/createProduct`, formData, {
+      await axios.post(`http://localhost:8050/api/v1/createProduct`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Product added successfully!");
-      setNewProduct({
-        title: "",
-        price: "",
-        offerPrice: "",
-        discountPercentage: "",
-        about: "",
-        description: "",
-        images: [],
-        subcategoryId: "",
-      });
-      setImagePreviews([]);
+      resetForm();
     } catch (error) {
       console.error("Error adding new product:", error);
-      toast.error("Failed to add product. Please try again.");
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(`Error: ${error.response.data.message}`);
+      } else {
+        toast.error("Failed to add product. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setNewProduct({
+      title: "",
+      price: "",
+      offerPrice: "",
+      discountPercentage: "",
+      about: "",
+      description: "",
+      images: [],
+      subcategoryId: "",
+    });
+    setImagePreviews([]);
   };
 
   return (
@@ -142,7 +168,7 @@ function Product() {
             type="number"
             id="offerPrice"
             name="offerPrice"
-            placeholder="Enter offer price"
+            placeholder="Offer price will auto-calculate"
             value={newProduct.offerPrice}
             disabled
           />
@@ -189,7 +215,7 @@ function Product() {
           >
             <option value="">Select Category</option>
             {category.map((cat) => (
-              <option key={cat._id} value={cat._id} onClick={()=>cateId(cat._id)}>
+              <option key={cat._id} value={cat._id} onClick={() => cateId(cat._id)}>
                 {cat.name}
               </option>
             ))}
@@ -206,13 +232,12 @@ function Product() {
           >
             <option value="">Select Subcategory</option>
             {subcategory.map((sub) => (
-              <option key={sub._id} value={sub._id} >
+              <option key={sub._id} value={sub._id}>
                 {sub.name}
               </option>
             ))}
           </select>
         </div>
-
         <div className="products-previews">
           {imagePreviews.map((preview, index) => (
             <div key={index} className="products-preview-container">
@@ -231,7 +256,7 @@ function Product() {
             </div>
           ))}
         </div>
-        <button type="submit" className="products-button" disabled={loading}>
+        <button type="submit" className="products-button" disabled={loading || !isFormValid()}>
           {loading ? "Adding..." : "Add Product"}
         </button>
       </form>

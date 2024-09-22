@@ -33,8 +33,10 @@ app.use("/api/v1", categoryRoute);
 app.use("/api/v1", SubcategoryRoute);
 app.use("/api/v1", ProductRoute);
 
-app.get("/", (req, res) => {
-  res.send("<h1>helloworld...</h1>");
+// Centralized error handling
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, message: "Something went wrong!" });
 });
 
 const PORT = process.env.PORT || 8080;
