@@ -65,7 +65,7 @@ const loginController = async (req, res) => {
     }
 
     const token = jwt.sign({ _id: existingUser._id }, process.env.SECRET_KEY, {
-      expiresIn: "7d",
+      expiresIn: "1h", // Specify hours
     });
     console.log(token);
 
