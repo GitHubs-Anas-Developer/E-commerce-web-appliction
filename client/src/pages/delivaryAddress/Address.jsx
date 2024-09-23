@@ -13,7 +13,6 @@ function Address() {
   const { user } = useContext(AuthContext);
   const token = Cookies.get("token");
 
-  // Initialize form data state
   const [formData, setFormData] = useState({
     firstName: Address?.firstName || "",
     lastName: Address?.lastName || "",
@@ -40,7 +39,6 @@ function Address() {
     });
   };
 
-  // Form validation function
   const validateForm = () => {
     const {
       firstName,
@@ -99,7 +97,6 @@ function Address() {
         }
       );
 
-      // Handle success
       if (response.data.success) {
         setSuccess(true);
         setFormData({
