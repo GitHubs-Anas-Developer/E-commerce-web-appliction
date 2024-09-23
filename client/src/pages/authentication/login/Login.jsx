@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./Login.css"; // Import the same CSS file used for Signup
 import axios from "axios";
 import { useCookies } from "react-cookie"; // Import useCookies
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -26,19 +25,18 @@ function Login() {
       const token = response.data.token;
 
       // Store token in cookies
-      setCookie("token", token); // Cookie expires in 1 day by default
+      setCookie("token", token, { path: '/', maxAge: 86400 }); // Cookie expires in 1 day
 
       navigate("/"); // Redirect to home or other page after login
-
-      console.log(token);
     } catch (error) {
       console.log("Login error:", error);
+      alert("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-form">
+    <div className="login-container">
+      <div className="login-form">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -65,7 +63,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" className="signup-button">
+          <button type="submit" className="login-button">
             Login
           </button>
         </form>
