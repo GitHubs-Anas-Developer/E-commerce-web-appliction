@@ -5,13 +5,15 @@ const {
   getProductAll,
   getOneProduct,
 } = require("../controllers/productController");
+
 const router = express.Router();
+const requireSignIn = require("../middleware/authMiddleware");
 
 // Route for creating a product (uploading multiple images)
 router.post("/products", upload.array("images", 10), createProduct);
 
 // Route for retrieving all products
-router.get("/products", getProductAll);
+router.get("/products", requireSignIn, getProductAll);
 
 // Route for retrieving a single product by ID
 router.get("/product/:id", getOneProduct);

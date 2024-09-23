@@ -1,9 +1,12 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import Cookies from "js-cookie"; // Import js-cookie to handle cookies
 
 const ProductContext = createContext();
 
 export const ProductContextProvider = ({ children }) => {
+
+  const token = Cookies.get("token");
   const [productsAll, setProductsAll] = useState([]);
   const [prodId, setProdId] = useState("");
   const [product, setProduct] = useState(null); // Start with null instead of an array
@@ -12,7 +15,12 @@ export const ProductContextProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/products`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/products`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setProductsAll(response.data.products);
       } catch (err) {
@@ -25,7 +33,8 @@ export const ProductContextProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchOneProduct = async () => {
-      if (prodId) { // Check if prodId is not empty
+      if (prodId) {
+        // Check if prodId is not empty
         try {
           const response = await axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/api/v1/product/${prodId}`

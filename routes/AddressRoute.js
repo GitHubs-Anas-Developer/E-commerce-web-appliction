@@ -4,10 +4,10 @@ const {
   getDelivaryAddress,
 } = require("../controllers/delivaryAddressController");
 
-const requireSignIn = require("../middleware/authMiddleware");
 const router = express.Router();
+const requireSignIn = require("../middleware/authMiddleware");
 
 router.post("/createDelivaryAddress", requireSignIn, createDeliveryAddress);
-router.get("/delivaryAddress/:id",requireSignIn, getDelivaryAddress);
+router.get("/delivaryAddress/:id", requireSignIn, getDelivaryAddress);
 
 module.exports = router;

@@ -2,19 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoneyBillWave,
-  faCreditCard,
-} from "@fortawesome/free-solid-svg-icons";
-import "./Payment.css";
+import { faMoneyBillWave, faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import "./Payment.css"; // Renamed CSS file to be more specific
 
-function Payment() {
+function Checkout() { // Renamed component to reflect its purpose
   const location = useLocation();
   const navigate = useNavigate();
   const { id, formData } = location.state || {};
 
   const [product, setProduct] = useState({});
-  const [paymentMethod, setPaymentMethod] = useState("cash"); // Default payment method
+  const [paymentMethod, setPaymentMethod] = useState("cash");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -52,13 +49,13 @@ function Payment() {
     setLoading(true);
     setError(null);
 
-    const totalAmount = product.offerPrice * 100;
 
+    
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/createOrder`,
         {
-          amount: totalAmount,
+          amount: product.offerPrice * 100,
           currency: "INR",
           receipt: `receipt_${Date.now()}`,
           userId: formData.userId,
@@ -69,7 +66,7 @@ function Payment() {
         key: process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_test_oJskryUkTtXvN0",
         amount: data.order.amount,
         currency: data.order.currency,
-        name: "Your Company Name",
+        name: "E-Commerce Store", // Updated name for branding
         description: "Payment for product",
         order_id: data.order.id,
         handler: function (response) {
@@ -88,7 +85,7 @@ function Payment() {
           contact: formData.contact || "9999999999",
         },
         theme: {
-          color: "#3399cc",
+          color: "#2874f0", // Flipkart's signature blue color
         },
       };
 
@@ -115,8 +112,8 @@ function Payment() {
   };
 
   return (
-    <div className="payment-container">
-      <h2>
+    <div className="checkout-container">
+      <h2 className="checkout-title">
         <FontAwesomeIcon icon={faCreditCard} /> Complete Your Payment
       </h2>
       <p>Please review your order and choose a payment method.</p>
@@ -124,21 +121,22 @@ function Payment() {
       {error && <p className="error-message">{error}</p>}
 
       {product && (
-        <div className="product-details">
+        <div className="checkout-product-details">
           {product.images && product.images.length > 0 && (
             <img
               src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
               alt={product.name}
+              className="checkout-product-image"
             />
           )}
-          <h3>Product: {product.title}</h3>
-          <p>Price: ₹{product.offerPrice || product.price}</p>
+          <h3 className="product-title">Product: {product.title}</h3>
+          <p className="product-price">Price: ₹{product.offerPrice || product.price}</p>
         </div>
       )}
 
-      <div className="payment-methods">
+      <div className="payment-options">
         <h3>Select Payment Method:</h3>
-        <label>
+        <label className="payment-option">
           <input
             type="radio"
             value="cash"
@@ -147,7 +145,7 @@ function Payment() {
           />
           <FontAwesomeIcon icon={faMoneyBillWave} /> Cash on Delivery
         </label>
-        <label>
+        <label className="payment-option">
           <input
             type="radio"
             value="online"
@@ -160,7 +158,7 @@ function Payment() {
 
       <button
         onClick={handlePayment}
-        className="payment-button"
+        className="checkout-button"
         disabled={loading}
       >
         {loading ? "Processing..." : "Proceed with Payment"}
@@ -169,4 +167,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default Checkout;

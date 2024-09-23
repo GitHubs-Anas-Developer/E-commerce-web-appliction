@@ -35,8 +35,8 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
+    <div className="auth-container">
+      <div className="auth-form">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
