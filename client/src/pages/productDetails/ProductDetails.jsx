@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./ProductDetails.css"; // Import the CSS file for styling
 import { useParams } from "react-router-dom";
 import ProductContext from "../../context/AllProducts"; // Import your context
-
+import { Link } from "react-router-dom";
 function ProductDetails() {
   const { id } = useParams(); // Get the product ID from the URL
   const { productId, product } = useContext(ProductContext); // Destructure context values
@@ -37,7 +37,9 @@ function ProductDetails() {
                 key={img._id}
                 src={`${process.env.REACT_APP_BACKEND_URL}/images/${img.filename}`} // Use the filename
                 alt={`product-img-${index}`}
-                className={`product-thumbnail ${index === selectedImage ? "active" : ""}`}
+                className={`product-thumbnail ${
+                  index === selectedImage ? "active" : ""
+                }`}
                 onClick={() => setSelectedImage(index)}
               />
             ))}
@@ -49,16 +51,29 @@ function ProductDetails() {
           <h2 className="product-details-title">{product.title}</h2>
           <div className="product-details--reviews">
             <span className="product-details-rating">{product.rating} ★</span>
-            <span className="product-details-reviews">{product.reviews} Ratings</span>
+            <span className="product-details-reviews">
+              {product.reviews} Ratings
+            </span>
           </div>
           <div className="product-details-price-info">
-            <span className="product-details-current-price">₹{product.price}</span>
-            <span className="product-details-original-price">₹{product.offerPrice}</span>
-            <span className="product-details-discount-info">{product.discountPercentage}% off</span>
+            <span className="product-details-current-price">
+              ₹{product.price}
+            </span>
+            <span className="product-details-original-price">
+              ₹{product.offerPrice}
+            </span>
+            <span className="product-details-discount-info">
+              {product.discountPercentage}% off
+            </span>
           </div>
           <div className="product-details-actions">
-            <button className="btn product-details-add-to-cart">Add to Cart</button>
-            <button className="btn product-details-buy-now">Buy Now</button>
+            <button className="btn product-details-add-to-cart">
+              Add to Cart
+            </button>
+            <Link to={`/delivaryAddress/${product._id}`}>
+          
+              <button className="btn product-details-buy-now">Buy Now</button>
+            </Link>
           </div>
           <div className="product-details-description">
             <h3>About this Product:</h3>

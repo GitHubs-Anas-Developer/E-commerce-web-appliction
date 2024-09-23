@@ -7,8 +7,10 @@ const authRoutes = require("./routes/authRoute");
 const cors = require("cors");
 const featureRoute = require("./routes/featureRoute");
 const categoryRoute = require("./routes/categoryRoute");
-const SubcategoryRoute = require("./routes/subCategoryRoute");
-const ProductRoute = require("./routes/productRoute");
+const subcategoryRoute = require("./routes/subCategoryRoute");
+const productRoute = require("./routes/productRoute");
+const addressRoute = require("./routes/AddressRoute");
+const paymentRoute =  require("./routes/paymentRoute")
 const path = require("path");
 
 // Load environment variables
@@ -30,8 +32,11 @@ app.use(express.static("public"));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1", featureRoute);
 app.use("/api/v1", categoryRoute);
-app.use("/api/v1", SubcategoryRoute);
-app.use("/api/v1", ProductRoute);
+app.use("/api/v1", subcategoryRoute);
+app.use("/api/v1", productRoute);
+app.use("/api/v1", addressRoute);
+app.use("/api/v1", paymentRoute);
+
 
 // Centralized error handling
 app.use((err, req, res, next) => {
