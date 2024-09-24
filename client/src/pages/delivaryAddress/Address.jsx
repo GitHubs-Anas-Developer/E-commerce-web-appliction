@@ -11,7 +11,6 @@ function Address() {
   const navigate = useNavigate();
   const { Address } = useContext(AddressContext);
   const { user } = useContext(AuthContext);
-  const token = Cookies.get("token");
 
   const [formData, setFormData] = useState({
     firstName: Address?.firstName || "",
@@ -92,7 +91,6 @@ function Address() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
         }
       );
