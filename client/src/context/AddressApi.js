@@ -18,7 +18,7 @@ export const AddressContextProvider = ({ children }) => {
     const fetchAddress = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/delivaryAddress/${userId}`
+          `http://localhost:8050/api/v1/delivaryAddress/${userId}`
         );
 
         setAddress(response.data.address[0]);

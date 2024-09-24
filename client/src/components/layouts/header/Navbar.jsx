@@ -5,9 +5,10 @@ import {
   CiSearch,
   CiUser,
 } from "react-icons/ci";
-import { BsBox } from "react-icons/bs";
+import { BiCategory } from "react-icons/bi";
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthContextApi";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { user, logout, login } = useContext(AuthContext);
@@ -16,9 +17,9 @@ function Navbar() {
     <nav className="navbar custom-navbar">
       <div className="container-fluid">
         {/* Brand Logo */}
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <h6 className="brand-logo">LOGOS</h6>
-        </a>
+        </Link>
 
         {/* Search Bar */}
         <div className="search-container">
@@ -36,18 +37,20 @@ function Navbar() {
         {/* Right Side Icons */}
         <div className="navbar-icons">
           {/* Wishlist */}
-          <a className="nav-links" href="#">
+          <Link className="nav-links" to="/wishlist">
             <CiHeart className="navigation-icon" />
-          </a>
-          {/* Orders */}
-          <a className="nav-links" href="#">
-            <BsBox className="navigation-icon" />
-          </a>
+          </Link>
+
+          {/* Categories */}
+          <Link className="nav-links" to="/category">
+            <BiCategory className="navigation-icon" />
+          </Link>
+
           {/* Cart */}
-          <a className="nav-links cart-icon" href="#">
+          <Link className="nav-links cart-icon" to="/cart">
             <CiShoppingCart className="navigation-icon" />
             <span className="cart-count">0</span>
-          </a>
+          </Link>
 
           {/* User Dropdown */}
           <div className="dropdown ms-2">
@@ -64,21 +67,21 @@ function Navbar() {
               {user ? (
                 <>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/profile">
                       Profile
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" onClick={logout}>
+                    <button className="dropdown-item" onClick={logout}>
                       Logout
-                    </a>
+                    </button>
                   </li>
                 </>
               ) : (
                 <li>
-                  <a className="dropdown-item" href="#" onClick={login}>
+                  <button className="dropdown-item" onClick={login}>
                     Login
-                  </a>
+                  </button>
                 </li>
               )}
             </ul>

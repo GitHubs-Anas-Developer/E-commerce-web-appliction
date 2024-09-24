@@ -4,6 +4,7 @@ const {
   createProduct,
   getProductAll,
   getOneProduct,
+  subCategoryProductsAll,
 } = require("../controllers/productController");
 
 const router = express.Router();
@@ -17,5 +18,8 @@ router.get("/products", requireSignIn, getProductAll);
 
 // Route for retrieving a single product by ID
 router.get("/product/:id", getOneProduct);
+
+
+router.get("/subcategoryProducts/:id", subCategoryProductsAll);
 
 module.exports = router;

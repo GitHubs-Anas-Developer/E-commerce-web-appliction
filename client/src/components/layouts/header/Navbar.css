@@ -122,7 +122,7 @@
 
 /* Add padding to body to avoid content being hidden behind the fixed navbar */
 body {
-  padding-top: 68px; /* Adjust based on navbar height */
+  padding-top: 78px; /* Adjust based on navbar height */
 }
 
 /* Responsive design adjustments */

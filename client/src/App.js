@@ -12,6 +12,7 @@ import Profile from "./pages/profile/Profile";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import Address from "./pages/delivaryAddress/Address";
 import Payment from "./pages/payment/Payment";
+import SubCategoryProducts from "./pages/subCategoryProducts/SubCategoryProducts";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/category" element={<CategorySidebar />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/subCategoryProducts/:id" element={<SubCategoryProducts />} />
         <Route path="/productDetails/:id" element={<ProductDetails />} />
         <Route path="/delivaryAddress/:id" element={<Address />} />
         <Route path="/payment" element={<Payment />} />

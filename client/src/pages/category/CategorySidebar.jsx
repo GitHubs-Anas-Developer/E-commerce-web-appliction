@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./CategorySidebar.css";
 import CategoryContext from "../../context/CategoryApi";
 import SubCategoryContext from "../../context/SubCategoryApi";
-
+import { Link } from "react-router-dom";
 const SidebarCategory = () => {
   const { category } = useContext(CategoryContext);
   const { mobiles, openCategory, toggleCategory } =
@@ -56,12 +56,14 @@ const SidebarCategory = () => {
       <div className="right-div">
         <div className="right-items">
           {mobiles.map((item) => (
-            <div key={item._id} className="right-item">
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
-                alt={item.name}
-              />
-            </div>
+            <Link className="Link" to={`/subCategoryProducts/${item._id}`}>
+              <div key={item._id} className="right-item">
+                <img
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
+                  alt={item.name}
+                />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

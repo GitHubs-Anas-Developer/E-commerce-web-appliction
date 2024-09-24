@@ -11,6 +11,7 @@ function Address() {
   const navigate = useNavigate();
   const { Address } = useContext(AddressContext);
   const { user } = useContext(AuthContext);
+  const token = Cookies.get("token");
 
   const [formData, setFormData] = useState({
     firstName: Address?.firstName || "",
@@ -86,11 +87,12 @@ function Address() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/createDelivaryAddress`,
+        `http://localhost:8050/api/v1/createDelivaryAddress`,
         formData,
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
