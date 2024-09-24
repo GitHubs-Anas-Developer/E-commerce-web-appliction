@@ -27,7 +27,8 @@ function SubCategoryProducts() {
   }
 
   return (
-    <div>
+    <div className="subcategory-products-container">
+      <h2 className="subcategory-title">Products in this Subcategory</h2>
       {subProducts.length > 0 ? (
         <div className="sub-products-product-list">
           {subProducts.map((product) => (
@@ -38,22 +39,23 @@ function SubCategoryProducts() {
                   alt={product.title}
                   className="sub-products-product-image"
                 />
-                <h3 className="sub-products-product-name">{product.title}</h3>
-                <p className="sub-products-product-price">
-                  Price: <span className="price">${product.price}</span>
-                </p>
-                {product.offerPrice && (
-                  <p className="sub-products-product-offer-price">
-                    Offer Price: <span className="sub-products-offer-price">${product.offerPrice}</span>
+                <div className="sub-products-product-details">
+                  <h3 className="sub-products-product-name">{product.title}</h3>
+                  <p className="sub-products-product-price">
+                    Price: <span className="price">${product.price}</span>
                   </p>
-                )}
-                {product.discountPercentage && (
-                  <p className="sub-products-product-discount">
-                    Discount: <span className="sub-products-discount-percentage">{product.discountPercentage}%</span>
-                  </p>
-                )}
-                <button className="sub-products-add-to-cart-button">Add to Cart</button>
-                <button className="sub-products-add-to-wishlist-button">Add to Wishlist</button>
+                  {product.offerPrice && (
+                    <p className="sub-products-product-offer-price">
+                      Offer Price: <span className="sub-products-offer-price">${product.offerPrice}</span>
+                    </p>
+                  )}
+                  {product.discountPercentage && (
+                    <p className="sub-products-product-discount">
+                      Discount: <span className="sub-products-discount-percentage">{product.discountPercentage}%</span>
+                    </p>
+                  )}
+                
+                </div>
               </div>
             </Link>
           ))}

@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
+const bodyParser = require("body-parser");
 const dataBase = require("./config/db");
 const morgan = require("morgan");
 const authRoutes = require("./routes/authRoute");
@@ -10,7 +11,7 @@ const categoryRoute = require("./routes/categoryRoute");
 const subcategoryRoute = require("./routes/subCategoryRoute");
 const productRoute = require("./routes/productRoute");
 const addressRoute = require("./routes/AddressRoute");
-const paymentRoute =  require("./routes/paymentRoute")
+const paymentRoute = require("./routes/paymentRoute");
 const path = require("path");
 
 // Load environment variables
@@ -24,6 +25,7 @@ dataBase();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.static("public"));
@@ -36,7 +38,6 @@ app.use("/api/v1", subcategoryRoute);
 app.use("/api/v1", productRoute);
 app.use("/api/v1", addressRoute);
 app.use("/api/v1", paymentRoute);
-
 
 // Centralized error handling
 app.use((err, req, res, next) => {

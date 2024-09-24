@@ -1,121 +1,146 @@
+/* Container for the whole subcategory products section */
+.subcategory-products-container {
+  padding: 20px;
+}
 
-  /* Main container for product list */
-  .sub-products-product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 20px; /* Add padding around the container */
-    background-color: var(--light-gray); /* Light gray background */
+/* Title styling */
+.subcategory-title {
+  text-align: center;
+  font-size: 1.5rem; /* Larger title size */
+  color: #222; /* Darker color for better contrast */
+  margin-bottom: 20px;
+}
+
+/* Grid layout for the list of subcategory products */
+.sub-products-product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Responsive columns */
+  gap: 15px; /* Space between grid items */
+}
+
+/* Individual product card styling */
+.sub-productsproduct-card {
+  background-color: #ffffff;
+  border: solid 1px #ccc; /* Light border color */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Card hover effect */
+.sub-productsproduct-card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Image styling */
+.sub-products-product-image {
+  width: 100%; /* Full width */
+  height: 150px; /* Fixed height for uniformity */
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Product details container */
+.sub-products-product-details {
+  padding: 15px;
+  text-align: left; /* Left align text for better readability */
+}
+
+/* Product title styling */
+.sub-products-product-name {
+  font-size: 1.1rem; /* Larger font size */
+  margin-bottom: 12px; /* Margin below title */
+  font-weight: 500; /* Medium weight */
+  color: #333; /* Dark color */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Price styling */
+.sub-products-product-price {
+  font-size: 1.2rem;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Offer price styling */
+.sub-products-product-offer-price {
+  font-size: 1.1rem;
+  color: #28a745; /* Green color for offer price */
+  text-decoration: line-through; /* Strikethrough effect for original price */
+}
+
+/* Discount percentage styling */
+.sub-products-product-discount {
+  font-size: 1rem;
+  color: #ff5722; /* Red color for discount */
+}
+
+/* Button container for styling */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Button styles */
+.sub-products-add-to-cart-button,
+.sub-products-add-to-wishlist-button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  padding: 12px 16px; /* Increased padding */
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1; /* Equal width for both buttons */
+  margin: 0 5px; /* Margin between buttons */
+  font-size: 1rem; /* Consistent font size */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Button hover effect */
+.sub-products-add-to-cart-button:hover,
+.sub-products-add-to-wishlist-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Error and loading message styling */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.5rem; /* Larger text for better visibility */
+  margin: 20px 0;
+  color: #ff5722; /* Red color for error messages */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .subcategory-title {
+    font-size: 2rem; /* Reduce title font size */
   }
-  
-  /* Individual product card styling */
-  .sub-productsproduct-card {
-    background-color: var(--light-color); /* White background */
-    border: 1px solid var(--dark-color); /* Dark border */
-    border-radius: 12px; /* Rounded corners */
-    margin: 15px; /* Margin around cards */
-    padding: 15px; /* Inner padding */
-    width: calc(25% - 30px); /* 4 cards per row with spacing */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
-  }
-  
-  .sub-productsproduct-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-  }
-  
-  /* Product image styling */
-  .sub-products-product-image {
-    max-width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners for images */
-  }
-  
-  /* Product name styling */
+
   .sub-products-product-name {
-    font-size: 1.2rem; /* Larger font size */
-    margin: 10px 0; /* Margin above and below title */
-    font-weight: 600; /* Semi-bold weight */
-    color: var(--dark-color); /* Dark color */
+    font-size: 1.4rem; /* Adjust product name font size */
   }
-  
-  /* Price styling */
-  .sub-products-product-price {
-    font-size: 1.125rem; /* Slightly larger than normal text */
-    color: #e91e63; /* Pinkish color for price */
-    margin: 5px 0; /* Vertical spacing */
+}
+
+@media (max-width: 480px) {
+  .sub-products-product-name {
+    font-size: 1.2rem; /* Further reduce font size for very small screens */
   }
-  
-  /* Offer price styling */
-  .sub-products-product-offer-price {
-    font-size: 1rem; /* Normal text size */
-    color: #757575; /* Gray color */
-    text-decoration: line-through; /* Strikethrough for offers */
-  }
-  
-  /* Discount percentage styling */
+
+  .sub-products-product-price,
+  .sub-products-product-offer-price,
   .sub-products-product-discount {
-    font-size: 1rem; /* Normal text size */
-    color: var(--error-color); /* Red color for discounts */
+    font-size: 0.9rem; /* Adjust font size for prices */
   }
-  
-  /* Button styles */
+
   .sub-products-add-to-cart-button,
   .sub-products-add-to-wishlist-button {
-    background-color: var(--primary-color); /* Blue background */
-    color: var(--light-color); /* White text */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 12px; /* Padding inside buttons */
-    margin-top: 10px; /* Spacing above buttons */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
-    width: 100%; /* Full width for buttons */
+    padding: 10px; /* Slightly reduced padding */
+    font-size: 0.9rem; /* Smaller font size for buttons */
   }
-  
-  .sub-products-add-to-cart-button:hover {
-    background-color: #357abd; /* Darker blue on hover */
-  }
-  
-  .sub-products-add-to-wishlist-button {
-    background-color: var(--secondary-color); /* Coral background */
-  }
-  
-  .sub-products-add-to-wishlist-button:hover {
-    background-color: #e63f5e; /* Darker coral on hover */
-  }
-  
-  /* Loading and error messages */
-  .loading, .error {
-    text-align: center; /* Centered text */
-    margin: 20px 0; /* Vertical spacing */
-    font-size: 1.2rem; /* Larger font size */
-    color: var(--dark-color); /* Dark text */
-  }
-  
-  /* Link styles */
-  .Link {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit color from parent */
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .sub-productsproduct-card {
-      width: calc(50% - 30px); /* 2 cards per row on tablets */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .sub-productsproduct-card {
-      width: 100%; /* 1 card per row on mobile */
-    }
-  }
-  
-  /* Focus styles for buttons for accessibility */
-  .sub-products-add-to-cart-button:focus,
-  .sub-products-add-to-wishlist-button:focus {
-    outline: 2px solid #0056b3; /* Outline for keyboard navigation */
-  }
-  
+}

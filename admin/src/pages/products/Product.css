@@ -1,69 +1,37 @@
-/* Product.css */
-
 .products-container {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 25px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 28px;
-  color: #2c3e50;
-  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
 }
 
 .products-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns layout */
+  gap: 20px; /* Space between grid items */
+}
+
+.products-input-group {
   display: flex;
   flex-direction: column;
 }
 
-.products-input-group {
-  margin-bottom: 20px;
+.products-input-group label {
+  margin-bottom: 5px;
 }
 
-label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #34495e;
-  font-family: 'Arial', sans-serif;
-}
-
-input[type="text"],
-input[type="number"],
-textarea,
-select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #bdc3c7;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border 0.3s, box-shadow 0.3s;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus,
-select:focus {
-  border: 1px solid #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-  outline: none;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 120px;
+.products-input-group input,
+.products-input-group textarea,
+.products-input-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .products-previews {
+  grid-column: span 2; /* Make the previews span across both columns */
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 10px;
 }
 
 .products-preview-container {
@@ -71,61 +39,34 @@ textarea {
 }
 
 .products-preview-image {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #ecf0f1;
+  border-radius: 5px;
 }
 
 .remove-button {
   position: absolute;
   top: 5px;
   right: 5px;
-  background-color: #e74c3c;
+  background: red;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.remove-button:hover {
-  background-color: #c0392b;
 }
 
 .products-button {
-  padding: 12px;
-  background-color: #3498db;
-  color: white;
+  grid-column: span 2; /* Make the button span across both columns */
+  padding: 10px;
   border: none;
-  border-radius: 6px;
-  font-size: 18px;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.products-button:hover {
-  background-color: #2980b9;
 }
 
 .products-button:disabled {
-  background-color: #bdc3c7;
+  background-color: #ccc;
   cursor: not-allowed;
-}
-
-.toastify {
-  font-size: 16px;
-}
-
-@media (max-width: 600px) {
-  .products-container {
-    padding: 20px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
 }

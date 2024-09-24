@@ -56,10 +56,11 @@ function ProductDetails() {
             </span>
           </div>
           <div className="product-details-price-info">
-            <span className="product-details-current-price">
+            <span className="product-details-original-price">
               ₹{product.price}
             </span>
-            <span className="product-details-original-price">
+            
+            <span className="product-details-current-price">
               ₹{product.offerPrice}
             </span>
             <span className="product-details-discount-info">
@@ -70,8 +71,7 @@ function ProductDetails() {
             <button className="btn product-details-add-to-cart">
               Add to Cart
             </button>
-            <Link to={`/delivaryAddress/${product._id}`}>
-          
+            <Link className="Link" to={`/delivaryAddress/${product._id}`}>
               <button className="btn product-details-buy-now">Buy Now</button>
             </Link>
           </div>

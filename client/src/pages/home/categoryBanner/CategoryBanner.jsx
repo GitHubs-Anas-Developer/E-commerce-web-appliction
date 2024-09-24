@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import category from "../../../assets/category"; // Adjust the path if needed
 import "./CategoryBanner.css";
 import CategoryContext from "../../../context/CategoryApi";
 

@@ -11,7 +11,7 @@ const router = express.Router();
 const requireSignIn = require("../middleware/authMiddleware");
 
 // Route for creating a product (uploading multiple images)
-router.post("/products", upload.array("images", 10), createProduct);
+router.post("/product", upload.array("images", 10), createProduct);
 
 // Route for retrieving all products
 router.get("/products", requireSignIn, getProductAll);

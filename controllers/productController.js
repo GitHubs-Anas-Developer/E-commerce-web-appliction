@@ -13,6 +13,16 @@ const createProduct = async (req, res) => {
       subcategoryId,
     } = req.body;
 
+    console.log("Creating product with data:", {
+      title,
+      price,
+      offerPrice,
+      discountPercentage,
+      about,
+      description,
+      subcategoryId,
+    });
+    
     // Check for required fields
     if (
       !title ||
@@ -26,6 +36,15 @@ const createProduct = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "All fields are required, including image files",
+      });
+    }
+
+    // Check if subcategory exists
+    const subCategoryExists = await SubCategory.findById(subcategoryId);
+    if (!subCategoryExists) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid subcategory ID",
       });
     }
 
