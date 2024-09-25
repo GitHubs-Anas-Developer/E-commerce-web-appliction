@@ -41,7 +41,7 @@ function Products() {
             <Link className="Link" to={`/productDetails/${product._id}`}>
               <div key={product._id} className="product-item">
                 <img
-                  src={`http://localhost:8050/images/${product.images[0]?.filename}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
                   alt={""}
                   className="product-image"
                 />
