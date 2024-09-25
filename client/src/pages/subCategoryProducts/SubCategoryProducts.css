@@ -1,146 +1,182 @@
-/* Container for the whole subcategory products section */
+/* Main container for the subcategory products */
 .subcategory-products-container {
-  padding: 20px;
-}
-
-/* Title styling */
-.subcategory-title {
-  text-align: center;
-  font-size: 1.5rem; /* Larger title size */
-  color: #222; /* Darker color for better contrast */
-  margin-bottom: 20px;
-}
-
-/* Grid layout for the list of subcategory products */
-.sub-products-product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* Responsive columns */
-  gap: 15px; /* Space between grid items */
-}
-
-/* Individual product card styling */
-.sub-productsproduct-card {
+  padding: 10px;
   background-color: #ffffff;
-  border: solid 1px #ccc; /* Light border color */
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Card hover effect */
-.sub-productsproduct-card:hover {
-  transform: translateY(-5px); /* Slight lift effect on hover */
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
-}
-
-/* Image styling */
-.sub-products-product-image {
-  width: 100%; /* Full width */
-  height: 150px; /* Fixed height for uniformity */
-  object-fit: cover; /* Maintain aspect ratio */
-}
-
-/* Product details container */
-.sub-products-product-details {
-  padding: 15px;
-  text-align: left; /* Left align text for better readability */
-}
-
-/* Product title styling */
-.sub-products-product-name {
-  font-size: 1.1rem; /* Larger font size */
-  margin-bottom: 12px; /* Margin below title */
-  font-weight: 500; /* Medium weight */
-  color: #333; /* Dark color */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; /* Prevents text wrapping */
-}
-
-/* Price styling */
-.sub-products-product-price {
-  font-size: 1.2rem;
-  color: #555;
-  font-weight: bold;
-}
-
-/* Offer price styling */
-.sub-products-product-offer-price {
-  font-size: 1.1rem;
-  color: #28a745; /* Green color for offer price */
-  text-decoration: line-through; /* Strikethrough effect for original price */
-}
-
-/* Discount percentage styling */
-.sub-products-product-discount {
-  font-size: 1rem;
-  color: #ff5722; /* Red color for discount */
-}
-
-/* Button container for styling */
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-/* Button styles */
-.sub-products-add-to-cart-button,
-.sub-products-add-to-wishlist-button {
-  background-color: #007bff; /* Primary button color */
-  color: #fff;
-  border: none;
-  padding: 12px 16px; /* Increased padding */
   border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for the subcategory */
+.subcategory-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px; /* Spacing below the title */
+}
+
+/* List of products in the subcategory */
+.sub-products-product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 15px; /* Space between product cards */
+}
+
+/* Individual product card */
+.sub-productsproduct-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
   cursor: pointer;
-  flex: 1; /* Equal width for both buttons */
-  margin: 0 5px; /* Margin between buttons */
-  font-size: 1rem; /* Consistent font size */
-  transition: background-color 0.3s, transform 0.3s;
+  width: 180px; /* Fixed width for cards */
+  height: 300px; /* Set a fixed height for uniformity */
 }
 
-/* Button hover effect */
-.sub-products-add-to-cart-button:hover,
-.sub-products-add-to-wishlist-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-  transform: translateY(-2px); /* Slight lift effect on hover */
+/* Product image styling */
+.sub-products-product-image {
+  width: 100%; /* Full width for images */
+  max-height: 180px; /* Maximum height for consistency */
+  object-fit: contain; /* Maintain aspect ratio */
+  border-radius: 5px;
 }
 
-/* Error and loading message styling */
-.loading,
+/* Links styling */
+.Links {
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Product name styling */
+.sub-products-product-name {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #333;
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Ellipsis for overflow */
+  white-space: nowrap; /* Prevent line break */
+}
+
+/* Price and offer price styling */
+.sub-products-product-price {
+  background-color: #001456;
+  float: left;
+  font-size: 20px;
+  color: #fcfcfc;
+  font-weight: bold;
+  text-decoration: line-through; /* Strikethrough for original price */
+}
+
+.sub-products-product-offer-price {
+  background-color: #d9d0c9;
+  font-size: 20px;
+  font-weight: 900;
+  color: #cf2525; /* Offer price color */
+}
+
+/* Discount label styling */
+.sub-products-product-discount {
+  background-color: rgb(112, 250, 250);
+  font-size: 14px;
+  font-weight: 800;
+  color: #0e0e0e; /* Discount color */
+}
+
+.sub-products-product-details {
+  padding-top: 2vh;
+}
+
+/* Loading and error state styling */
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #3498db; /* Loading color */
+}
+
 .error {
   text-align: center;
-  font-size: 1.5rem; /* Larger text for better visibility */
-  margin: 20px 0;
-  color: #ff5722; /* Red color for error messages */
+  font-size: 18px;
+  color: #e63946; /* Error color */
 }
 
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .subcategory-title {
-    font-size: 2rem; /* Reduce title font size */
-  }
-
-  .sub-products-product-name {
-    font-size: 1.4rem; /* Adjust product name font size */
+  .sub-productsproduct-card {
+    width: 100%; /* Full width on smaller screens */
+    max-width: 180px; /* Maximum width */
+    height: auto; /* Maintain auto height for better content fit */
   }
 }
 
-@media (max-width: 480px) {
-  .sub-products-product-name {
-    font-size: 1.2rem; /* Further reduce font size for very small screens */
+@media (min-width: 769px) {
+  .sub-productsproduct-card {
+    width: 200px; /* Wider cards on larger screens */
   }
+}
 
-  .sub-products-product-price,
-  .sub-products-product-offer-price,
-  .sub-products-product-discount {
-    font-size: 0.9rem; /* Adjust font size for prices */
-  }
+/* Container for product action buttons */
+.product-actions-container {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 3vh; /* Space between buttons */
+  margin-top: -6vh; /* Negative margin for positioning */
+  z-index: 1000; /* Bring to the front */
+}
 
-  .sub-products-add-to-cart-button,
-  .sub-products-add-to-wishlist-button {
-    padding: 10px; /* Slightly reduced padding */
-    font-size: 0.9rem; /* Smaller font size for buttons */
+/* Cart and wishlist button styling */
+.cart-button,
+.wishlist-button {
+  cursor: pointer;
+  font-size: 18px;
+  color: rgb(226, 234, 224);
+  background-color: rgba(49, 117, 117, 0.911);
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Include transform */
+  border: 1px solid transparent;
+  border-radius: 50%;
+  height: 5vh;
+  width: 5vh;
+  display: flex; /* Center content */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button hover effects */
+.cart-button:hover,
+.wishlist-button:hover {
+  color: #fff; /* Text color on hover */
+  background-color: #e67e22; /* Background color on hover */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Active state effect */
+.cart-button:active,
+.wishlist-button:active {
+  transform: scale(0.95); /* Slightly shrink on click */
+  transition: transform 0.1s; /* Faster transition for active state */
+}
+
+/* Optional: Add a pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Adding pulse effect on hover */
+.cart-button:hover,
+.wishlist-button:hover {
+  animation: pulse 0.5s infinite; /* Start pulse animation on hover */
 }

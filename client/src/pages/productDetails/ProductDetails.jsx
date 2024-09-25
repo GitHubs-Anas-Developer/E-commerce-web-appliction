@@ -27,7 +27,7 @@ function ProductDetails() {
         <div className="product-details-images">
           <div className="product-image-display">
             <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[selectedImage].filename}`} // Use the selected image filename
+              src={`http://localhost:8050/images/${product.images[selectedImage].filename}`} // Use the selected image filename
               alt="Selected product"
             />
           </div>
@@ -35,7 +35,7 @@ function ProductDetails() {
             {product.images.map((img, index) => (
               <img
                 key={img._id}
-                src={`${process.env.REACT_APP_BACKEND_URL}/images/${img.filename}`} // Use the filename
+                src={`http://localhost:8050/images/${img.filename}`} // Use the filename
                 alt={`product-img-${index}`}
                 className={`product-thumbnail ${
                   index === selectedImage ? "active" : ""

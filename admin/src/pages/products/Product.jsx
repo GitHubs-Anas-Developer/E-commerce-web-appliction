@@ -28,7 +28,7 @@ function Product() {
   useEffect(() => {
     if (newProduct.price && newProduct.discountPercentage) {
       const discountedPrice =
-        newProduct.price - (newProduct.price * newProduct.discountPercentage) / 100;
+        newProduct.price - (newProduct.price * newProduct.discountPercentage) /100 - 0
       setNewProduct((prev) => ({ ...prev, offerPrice: discountedPrice }));
     }
   }, [newProduct.price, newProduct.discountPercentage]);
