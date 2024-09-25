@@ -91,7 +91,7 @@ function Product() {
     });
 
     try {
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/product`, formData, {
+      await axios.post(`http://localhost:8050/api/v1/product`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Product added successfully!");

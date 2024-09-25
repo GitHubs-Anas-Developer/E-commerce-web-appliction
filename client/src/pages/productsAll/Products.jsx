@@ -42,7 +42,7 @@ function Products() {
               <div key={product._id} className="product-item">
                 <img
                   src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
-                  alt={product.title}
+                  alt={""}
                   className="product-image"
                 />
                 <h6 className="item-title">{product.title}</h6>
