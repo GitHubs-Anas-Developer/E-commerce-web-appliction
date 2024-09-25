@@ -24,6 +24,7 @@ function Product() {
   const [loading, setLoading] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
 
+  // Auto-calculate offer price based on discount and price
   useEffect(() => {
     if (newProduct.price && newProduct.discountPercentage) {
       const discountedPrice =
@@ -38,19 +39,22 @@ function Product() {
     };
   }, [imagePreviews]);
 
+  // Input change handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewProduct((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle file upload and preview generation
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+
     setNewProduct((prevState) => ({
       ...prevState,
       images: [...prevState.images, ...files],
     }));
 
-    const newPreviews = files.map((file) => URL.createObjectURL(file));
     setImagePreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   };
 
@@ -62,6 +66,7 @@ function Product() {
     setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // Form validation logic
   const isFormValid = () => {
     return (
       newProduct.title &&
@@ -73,6 +78,7 @@ function Product() {
     );
   };
 
+  // Submit handler for adding new product
   const handleAddProduct = async (e) => {
     e.preventDefault();
     if (!newProduct.subcategoryId) {
@@ -91,14 +97,18 @@ function Product() {
     });
 
     try {
-      await axios.post(`http://localhost:8050/api/v1/product`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        `http://localhost:8050/api/v1/product`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       toast.success("Product added successfully!");
       resetForm();
     } catch (error) {
       console.error("Error adding new product:", error);
-      if (error.response && error.response.data && error.response.data.message) {
+      if (error.response?.data?.message) {
         toast.error(`Error: ${error.response.data.message}`);
       } else {
         toast.error("Failed to add product. Please try again.");
@@ -108,6 +118,7 @@ function Product() {
     }
   };
 
+  // Reset form after successful submission
   const resetForm = () => {
     setNewProduct({
       title: "",
@@ -138,6 +149,7 @@ function Product() {
             required
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="price">Price</label>
           <input
@@ -150,6 +162,7 @@ function Product() {
             required
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="discountPercentage">Discount Percentage</label>
           <input
@@ -162,6 +175,7 @@ function Product() {
             required
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="offerPrice">Offer Price</label>
           <input
@@ -173,6 +187,7 @@ function Product() {
             disabled
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="about">About</label>
           <textarea
@@ -183,6 +198,7 @@ function Product() {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="description">Description</label>
           <textarea
@@ -193,6 +209,7 @@ function Product() {
             onChange={handleInputChange}
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="images">Images</label>
           <input
@@ -204,23 +221,28 @@ function Product() {
             required
           />
         </div>
+
         <div className="products-input-group">
           <label htmlFor="categoryId">Category</label>
           <select
             id="categoryId"
             name="categoryId"
             value={newProduct.categoryId}
-            onChange={handleInputChange}
+            onChange={(e) => {
+              handleInputChange(e);
+              cateId(e.target.value); // Update subcategories on category change
+            }}
             required
           >
             <option value="">Select Category</option>
             {category.map((cat) => (
-              <option key={cat._id} value={cat._id} onClick={() => cateId(cat._id)}>
+              <option key={cat._id} value={cat._id}>
                 {cat.name}
               </option>
             ))}
           </select>
         </div>
+
         <div className="products-input-group">
           <label htmlFor="subcategoryId">Subcategory</label>
           <select
@@ -238,26 +260,28 @@ function Product() {
             ))}
           </select>
         </div>
+
         <div className="products-previews">
           {imagePreviews.map((preview, index) => (
-            <div key={index} className="products-preview-container">
-              <img
-                src={preview}
-                alt={`preview ${index}`}
-                className="products-preview-image"
-              />
+            <div key={index} className="products-preview">
+              <img src={preview} alt="product preview" />
               <button
                 type="button"
-                className="remove-button"
                 onClick={() => handleRemoveImage(index)}
+                className="remove-btn"
               >
                 Remove
               </button>
             </div>
           ))}
         </div>
-        <button type="submit" className="products-button" disabled={loading || !isFormValid()}>
-          {loading ? "Adding..." : "Add Product"}
+
+        <button
+          type="submit"
+          className="products-submit-btn"
+          disabled={!isFormValid() || loading}
+        >
+          {loading ? "Adding Product..." : "Add Product"}
         </button>
       </form>
       <ToastContainer />
