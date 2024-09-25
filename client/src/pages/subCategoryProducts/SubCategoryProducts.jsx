@@ -37,6 +37,7 @@ function SubCategoryProducts() {
 
   return (
     <div className="subcategory-products-container">
+      <h2 className="subcategory-title">Products in this Subcategory</h2>
       {subProducts.length > 0 ? (
         <div className="sub-products-product-list">
           {subProducts.map((product) => (
@@ -49,8 +50,8 @@ function SubCategoryProducts() {
                     </span>
                   </p>
                 <img
-                  src={`http://localhost:8050/images/${product.images[0]?.filename}`}
-                  alt={product.title}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
+                  alt={""}
                   className="sub-products-product-image"
                 />
                 <div className="product-actions-container">
@@ -74,11 +75,14 @@ function SubCategoryProducts() {
                   <p className="sub-products-product-price">
                     <span className="price">₹{product.price}</span>
                   </p>
+
                   <p className="sub-products-product-offer-price">
                     <span className="sub-products-offer-price">
                       ₹{product.offerPrice}
                     </span>
                   </p>
+
+                 
                 </div>
               </Link>
             </div>

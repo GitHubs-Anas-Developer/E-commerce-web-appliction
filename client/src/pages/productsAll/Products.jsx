@@ -7,9 +7,6 @@ import { Link } from "react-router-dom";
 function Products() {
   const { productsAll, loading } = useContext(ProductContext);
 
-  console.log(productsAll[5].images);
-  
-
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -44,7 +41,7 @@ function Products() {
             <Link className="Link" to={`/productDetails/${product._id}`}>
               <div key={product._id} className="product-item">
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[1]?.filename}`}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
                   alt={""}
                   className="product-image"
                 />
