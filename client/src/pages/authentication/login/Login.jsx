@@ -3,12 +3,27 @@ import "./Login.css"; // Import the same CSS file used for Signup
 import axios from "axios";
 import { useCookies } from "react-cookie"; // Import useCookies
 import { useNavigate, Link } from "react-router-dom";
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, setCookie] = useCookies(["token"]); // Initialize cookies state
+  const [passwordType, setPasswordType] = useState("password"); // Toggle for password visibility
+  const [icon, setIcon] = useState(eyeOff); // Toggle between eye and eyeOff icons
+
+  const handleToggle = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setIcon(eye);
+    } else {
+      setPasswordType("password");
+      setIcon(eyeOff);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,7 +40,7 @@ function Login() {
       const token = response.data.token;
 
       // Store token in cookies
-      setCookie("token", token, { path: '/', maxAge: 86400 }); // Cookie expires in 1 day
+      setCookie("token", token, { path: "/", maxAge: 86400 }); // Cookie expires in 1 day
 
       navigate("/"); // Redirect to home or other page after login
     } catch (error) {
@@ -53,15 +68,20 @@ function Login() {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="password-wrapper">
+              <input
+                type={passwordType}
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span onClick={handleToggle} className="toggle-icon">
+                <Icon icon={icon} size={20} />
+              </span>
+            </div>
           </div>
           <button type="submit" className="login-button">
             Login

@@ -87,7 +87,7 @@ function Address() {
 
     try {
       const response = await axios.post(
-        `http://localhost:8050/api/v1/createDelivaryAddress`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/createDelivaryAddress`,
         formData,
         {
           headers: {

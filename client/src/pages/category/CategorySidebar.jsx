@@ -59,7 +59,7 @@ const SidebarCategory = () => {
             <Link className="Link" to={`/subCategoryProducts/${item._id}`}>
               <div key={item._id} className="right-item">
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
+                  src={`http://localhost:8050/images/${item.images[0]?.filename}`}
                   alt={item.name}
                 />
               </div>

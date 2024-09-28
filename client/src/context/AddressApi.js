@@ -18,12 +18,15 @@ export const AddressContextProvider = ({ children }) => {
     const fetchAddress = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8050/api/v1/delivaryAddress/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/delivaryAddress/${userId}`,{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         setAddress(response.data.address[0]);
       } catch (error) {
-        console.log("Error fetching address:", error);
       }
     };
 

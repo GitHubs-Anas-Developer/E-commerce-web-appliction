@@ -2,10 +2,14 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBillWave, faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMoneyBillWave,
+  faCreditCard,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Payment.css"; // Renamed CSS file to be more specific
 
-function Checkout() { // Renamed component to reflect its purpose
+function Checkout() {
+  // Renamed component to reflect its purpose
   const location = useLocation();
   const navigate = useNavigate();
   const { id, formData } = location.state || {};
@@ -27,9 +31,24 @@ function Checkout() { // Renamed component to reflect its purpose
     }
   };
 
+  const fetchOneFeatureProduct = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/feature/${id}`
+      );
+      setProduct(response.data.product);
+    } catch (error) {
+      setError(
+        "Error fetching Feature product details. Please try again later."
+      );
+      console.error("Error fetching Feature product:", error);
+    }
+  };
+
   useEffect(() => {
     if (id) {
       fetchProduct();
+      fetchOneFeatureProduct();
     }
   }, [id]);
 
@@ -49,8 +68,6 @@ function Checkout() { // Renamed component to reflect its purpose
     setLoading(true);
     setError(null);
 
-
-    
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/v1/createOrder`,
@@ -59,6 +76,7 @@ function Checkout() { // Renamed component to reflect its purpose
           currency: "INR",
           receipt: `receipt_${Date.now()}`,
           userId: formData.userId,
+          prodId: id,
         }
       );
 
@@ -72,7 +90,7 @@ function Checkout() { // Renamed component to reflect its purpose
         handler: function (response) {
           if (response.razorpay_payment_id) {
             alert("Payment Success!");
-            navigate("/order-success", {
+            navigate("/orders", {
               state: { paymentMethod: "online", product, response },
             });
           } else {
@@ -80,9 +98,8 @@ function Checkout() { // Renamed component to reflect its purpose
           }
         },
         prefill: {
-          name: formData.name || "Test User",
-          email: formData.email || "test@example.com",
-          contact: formData.contact || "9999999999",
+          name: formData.firstName + formData.lastName,
+          contact: formData.phoneNumber,
         },
         theme: {
           color: "#2874f0", // Flipkart's signature blue color
@@ -130,7 +147,7 @@ function Checkout() { // Renamed component to reflect its purpose
             />
           )}
           <h3 className="product-title">Product: {product.title}</h3>
-          <p className="product-price">Price: ₹{product.offerPrice || product.price}</p>
+          <p className="product-price">Price: ₹{product.offerPrice}</p>
         </div>
       )}
 

@@ -12,7 +12,7 @@ export const SubCategoryContextProvider = ({ children }) => {
       if (categoryOneId) {
         try {
           const response = await axios(
-            `${process.env.REACT_APP_BACKEND_URL}/api/v1/subcategories/category/${categoryOneId}`
+            `http://localhost:8050/api/v1/subcategories/category/${categoryOneId}`
           );
 
           console.log(response.data.subCategories);

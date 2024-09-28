@@ -33,6 +33,11 @@ const paymentOrderSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  prodId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

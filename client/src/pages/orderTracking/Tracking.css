@@ -1,0 +1,63 @@
+.tracking-container {
+
+    max-width: 600px;
+    margin: 40px auto;
+    border-radius: 8px;
+  }
+  
+  .tracking-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .tracking-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .tracking-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .tracking-container button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .tracking-info {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .tracking-info h2 {
+    margin: 0 0 10px;
+    color: #333;
+  }
+  
+  .tracking-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  

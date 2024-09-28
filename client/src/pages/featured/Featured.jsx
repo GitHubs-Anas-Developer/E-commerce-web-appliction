@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Featured.css"; // Custom styles
 import FeatureContext from "../../context/FeatureContextApi";
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 function Featured() {
   const { feature } = useContext(FeatureContext);
@@ -36,31 +37,33 @@ function Featured() {
       <div className="featured-grid-wrapper">
         <div className="featured-grid">
           {feature.length > 0 ? (
-            feature.map((item) => (
-              <div key={item._id} className="featured-item">
-                <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.images[0]?.filename}`}
-                  alt={""}
-                  className="featured-image"
-                />
-                <h6 className="item-title">{item.title}</h6>
-                {item.offerPrice && (
-                  <p className="price">{formatPrice(item.price)}</p>
-                )}
-                {item.discountPercentage && (
-                  <p className="discount">
-                    {formatDiscount(item.discountPercentage)} OFF
+            feature.map((product) => (
+              <Link className="Link" to={`/productDetails/${product._id}`}>
+                <div key={product._id} className="featured-item">
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
+                    alt={""}
+                    className="featured-image"
+                  />
+                  <h6 className="item-title">{product.title}</h6>
+                  {product.offerPrice && (
+                    <p className="price">{formatPrice(product.price)}</p>
+                  )}
+                  {product.discountPercentage && (
+                    <p className="discount">
+                      {formatDiscount(product.discountPercentage)} OFF
+                    </p>
+                  )}
+                  <p className="offer-price">
+                    {formatOfferPrice(product.offerPrice)}
                   </p>
-                )}
-                <p className="offer-price">
-                  {formatOfferPrice(item.offerPrice)}
-                </p>
 
-                <div className="featured-item-icons">
-                  <CiHeart className="icon heart-icon" />
-                  <CiShoppingCart className="icon cart-icon" />
+                  <div className="featured-item-icons">
+                    <CiHeart className="icon heart-icon" />
+                    <CiShoppingCart className="icon cart-icon" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <p>No featured items available.</p>

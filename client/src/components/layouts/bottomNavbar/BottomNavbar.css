@@ -1,59 +1,65 @@
-/* BottomNavbar.css */
-
-/* Main container for the bottom navbar */
+/* Bottom Navbar Container */
 .bottom-navbar {
-  display: flex; /* Horizontal layout */
-  justify-content: space-around; /* Evenly space the items */
-  align-items: center; /* Vertically center the items */
-  background-color: #ffffff; /* White background */
+  display: flex; /* Flex layout for navigation */
+  justify-content: space-around; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+  background-color: #fff; /* White background */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   padding: 10px 0; /* Padding for top and bottom */
-  position: fixed; /* Stick to the bottom of the viewport */
-  bottom: 0; /* Position at the bottom */
-  left: 0; /* Full width from left */
-  right: 0; /* Full width from right */
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
-  z-index: 999; /* Ensure it stays on top */
-  border-top: 1px solid #e0e0e0; /* Light border for clean separation */
+  position: fixed; /* Fixed at bottom */
+  bottom: 0; /* Align to bottom */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure above other elements */
 }
 
-/* Each individual nav item */
+/* Individual Navigation Items */
 .nav-item {
-  display: flex; /* Layout icon and label side by side */
-  flex-direction: column; /* Stack icon above label */
-  align-items: center; /* Center content horizontally */
-  font-size: 14px; /* Font size for label */
-  color: #333333; /* Dark text color for contrast */
-  transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
-  cursor: pointer; /* Pointer on hover */
+  text-align: center; /* Center text and icons */
+  position: relative; /* For positioning counts */
+  flex: 1; /* Equal space for each item */
 }
 
-/* Icon styling */
+/* Navigation Icons */
 .nav-icon {
-  font-size: 24px; /* Size of the icons */
-  margin-bottom: 5px; /* Space between icon and label */
-  transition: transform 0.3s ease; /* Smooth icon animation */
-  color: #333333; /* Dark color for icons */
+  font-size: 24px; /* Icon size */
+  color: #333; /* Dark color for icons */
 }
 
-/* Label styling */
+/* Navigation Labels */
 .nav-label {
-  font-size: 12px; /* Smaller font for label */
-  font-weight: 500; /* Medium weight */
-  letter-spacing: 0.5px; /* Slight spacing for a modern look */
+  display: block; /* Block display for labels */
+  font-size: 12px; /* Smaller font size for labels */
+  color: #666; /* Grey color for labels */
 }
 
-/* Hover effect for nav items */
-.nav-item:hover {
-  color: #00aced; /* Change text color on hover */
+/* Wishlist and Cart Count Styles */
+.wishlist-count,
+.cart-count {
+  position: absolute; /* Absolute positioning for badges */
+  top: -5px; /* Adjusts position above icon */
+  right: 19px; /* Adjusts position to the right */
+  background-color: red; /* Red background for badges */
+  color: white; /* White text */
+  border-radius: 50%; /* Circular shape */
+  padding: 2px 5px; /* Padding for count */
+  height: 20px; /* Fixed height for badges */
+  width: 20px; /* Fixed width for badges */
+  display: flex; /* Flex to center text */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  font-size: 12px; /* Font size for count */
 }
 
+/* Hover Effects */
 .nav-item:hover .nav-icon {
-  transform: scale(1.2); /* Scale up icon slightly on hover */
-  color: #00aced; /* Change icon color on hover */
+  color: #007bff; /* Change icon color on hover */
 }
 
+.nav-item:hover .nav-label {
+  color: #007bff; /* Change label color on hover */
+}
 /* Mobile responsiveness */
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .bottom-navbar {
     display: none; /* Hide navbar on larger screens */
   }

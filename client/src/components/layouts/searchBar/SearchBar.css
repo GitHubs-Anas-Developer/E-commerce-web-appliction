@@ -1,0 +1,65 @@
+.search-container {
+  display: flex; /* Flexbox for layout */
+  justify-content: center; /* Center the search bar */
+  align-items: center; /* Vertically center */
+  margin: 10px 0; /* Space above and below */
+}
+
+form {
+  display: flex; /* Flexbox for input and button */
+  width: 100%; /* Full width on smaller screens */
+  max-width: 600px; /* Limit max width */
+  border-radius: 25px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+.search-input {
+  flex: 1; /* Take remaining space */
+  padding: 12px 10px; /* Padding for input */
+  border: none; /* Remove border */
+  border-radius: 25px 0 0 25px; /* Rounded left side */
+  font-size: 16px; /* Font size */
+  outline: none; /* Remove outline on focus */
+  transition: background-color 0.3s; /* Smooth transition */
+  background-color: #f2f2f2; /* Light background */
+}
+
+.search-input::placeholder {
+  color: #aaa; /* Placeholder color */
+}
+
+.search-input:focus {
+  background-color: #fff; /* White background on focus */
+}
+
+.search-btn {
+  background-color: #3498db; /* Button color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  padding: 12px 20px; /* Padding for button */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+  border-radius: 0 25px 25px 0; /* Rounded right side */
+}
+
+.search-btn:hover {
+  background-color: #2980b9; /* Darker shade on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-container {
+    margin: 1px 0; /* Less margin on smaller screens */
+  }
+
+  .search-input {
+    font-size: 14px; /* Smaller font size */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .search-btn {
+    padding: 10px; /* Adjust button padding */
+  }
+}

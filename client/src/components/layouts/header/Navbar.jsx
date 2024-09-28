@@ -1,17 +1,17 @@
 import "./Navbar.css";
-import {
-  CiHeart,
-  CiShoppingCart,
-  CiSearch,
-  CiUser,
-} from "react-icons/ci";
+import { CiHeart, CiShoppingCart, CiSearch, CiUser } from "react-icons/ci";
 import { BiCategory } from "react-icons/bi";
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthContextApi";
 import { Link } from "react-router-dom";
+import WishListContext from "../../../context/WishListContextApi";
+import CartContextApi from "../../../context/CartContextApi";
+import SearchBar from './../searchBar/SearchBar';
 
 function Navbar() {
   const { user, logout, login } = useContext(AuthContext);
+  const { WishListCount } = useContext(WishListContext);
+  const { cartCount } = useContext(CartContextApi);
 
   return (
     <nav className="navbar custom-navbar">
@@ -21,35 +21,25 @@ function Navbar() {
           <h6 className="brand-logo">LOGOS</h6>
         </Link>
 
-        {/* Search Bar */}
-        <div className="search-container">
-          <input
-            className="search-input"
-            type="search"
-            placeholder="Search for products, brands, and more"
-            aria-label="Search"
-          />
-          <button className="search-btn" type="submit">
-            <CiSearch />
-          </button>
-        </div>
+   <SearchBar />
 
         {/* Right Side Icons */}
         <div className="navbar-icons">
-          {/* Wishlist */}
-          <Link className="nav-links" to="/wishlist">
-            <CiHeart className="navigation-icon" />
-          </Link>
-
           {/* Categories */}
           <Link className="nav-links" to="/category">
             <BiCategory className="navigation-icon" />
           </Link>
 
+          {/* Wishlist */}
+          <Link className="nav-links" to="/wishlist">
+            <CiHeart className="navigation-icon" />
+            <span className="nav-wishlist-count">{WishListCount}</span>
+          </Link>
+
           {/* Cart */}
           <Link className="nav-links cart-icon" to="/cart">
             <CiShoppingCart className="navigation-icon" />
-            <span className="cart-count">0</span>
+            <span className="nav-cart-count">{cartCount}</span>
           </Link>
 
           {/* User Dropdown */}

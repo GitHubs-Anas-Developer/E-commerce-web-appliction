@@ -16,36 +16,6 @@
   text-transform: uppercase; /* Uppercase text */
 }
 
-.search-container {
-  flex-grow: 1; /* Use available space */
-  display: flex; /* Flexbox for layout */
-}
-
-.search-input {
-  width: 100%; /* Full width */
-  padding: 12px; /* Padding */
-  border: 1px solid #fff; /* White border */
-  border-radius: 30px; /* Rounded corners */
-  margin-right: 10px; /* Space from button */
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-  transition: border-color 0.3s; /* Smooth border transition */
-}
-
-.search-input:focus {
-  border-color: #ffd700; /* Gold border on focus */
-  outline: none; /* Remove outline */
-}
-
-.search-btn {
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-  color: #030303; /* White text */
-  border: none; /* No border */
-  border-radius: 30px; /* Rounded button */
-  padding: 12px 18px; /* Padding */
-  cursor: pointer; /* Pointer on hover */
-  transition: background-color 0.3s; /* Smooth transitions */
-}
-
 
 
 .navbar-icons {

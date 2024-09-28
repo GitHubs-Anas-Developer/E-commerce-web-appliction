@@ -11,7 +11,7 @@ export const ProductContextProvider = ({ children }) => {
   const [product, setProduct] = useState(null);
   const [subProductsId, setSubProductsId] = useState("");
   const [subProducts, setSubProducts] = useState([]);
-  
+
   // Loading and error states
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [errorProducts, setErrorProducts] = useState(null);
@@ -57,17 +57,32 @@ export const ProductContextProvider = ({ children }) => {
       }
     };
 
+    const fetchFeatureOneProduct = async () => {
+      if (prodId) {
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/feature/${prodId}`
+          );
+          setProduct(response.data.product);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
     fetchOneProduct();
+    fetchFeatureOneProduct();
   }, [prodId]);
 
   // Fetch subcategory products based on subProductsId
   useEffect(() => {
     const fetchSubcategoryProducts = async () => {
-      if (subProductsId) { // Ensure subProductsId is not empty
+      if (subProductsId) {
+        // Ensure subProductsId is not empty
         setLoadingSubProducts(true);
         try {
           const response = await axios.get(
-            `http://localhost:8050/api/v1/subcategoryProducts/${subProductsId}`
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/subcategoryProducts/${subProductsId}`
           );
           setSubProducts(response.data.products);
         } catch (error) {

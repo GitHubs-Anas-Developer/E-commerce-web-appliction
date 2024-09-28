@@ -38,7 +38,6 @@
 
 /* Hover effect for product items */
 
-
 /* Image styling within product items */
 .product-image {
   width: 100%;
@@ -60,7 +59,6 @@
 
 /* Price styling */
 .product-item p.price {
-
   text-decoration: line-through;
   font-size: 1.1rem;
   font-weight: 500; /* Medium weight */
@@ -93,14 +91,14 @@
   transition: opacity 0.3s ease;
 }
 
-.product-item:hover .product-item-icons {
+.product-item-icons {
   opacity: 1; /* Show icons on hover */
 }
 
 /* Styling for individual icons */
 .icon {
-  background-color: #fff; /* White background */
-  border: solid 1px #ccc; /* Light grey border */
+  background-color: whitesmoke; /* White background */
+  color: black;
   border-radius: 50%; /* Circular icons */
   padding: 6px; /* Increased padding */
   cursor: pointer;
@@ -108,15 +106,7 @@
   transition: color 0.3s ease;
 }
 
-.heart-icon:hover {
-  color: #e91e63; /* Pink color for heart icon on hover */
-}
-
-.cart-icon:hover {
-  color: #2196f3; /* Blue color for cart icon on hover */
-}
-
-.Link{
+.Link {
   margin-left: auto;
   margin-right: auto;
   text-decoration: none;

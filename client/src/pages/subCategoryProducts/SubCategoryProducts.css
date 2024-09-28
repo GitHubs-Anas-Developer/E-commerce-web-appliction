@@ -67,7 +67,7 @@
 .sub-products-product-price {
   background-color: #001456;
   float: left;
-  font-size: 20px;
+  font-size: 18px;
   color: #fcfcfc;
   font-weight: bold;
   text-decoration: line-through; /* Strikethrough for original price */
@@ -75,7 +75,7 @@
 
 .sub-products-product-offer-price {
   background-color: #d9d0c9;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   color: #cf2525; /* Offer price color */
 }

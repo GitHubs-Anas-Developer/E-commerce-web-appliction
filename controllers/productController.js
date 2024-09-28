@@ -70,7 +70,6 @@ const createProduct = async (req, res) => {
       path: file.path,
     }));
 
-    console.log("Uploaded images: ", images);
 
     // Create a new Product
     const newProduct = new productModel({
@@ -128,7 +127,6 @@ const getProductAll = async (req, res) => {
 const getOneProduct = async (req, res) => {
   try {
     const { id } = req.params; // Correctly destructuring 'id' from req.params
-    console.log("Fetching product with ID:", id);
 
     const product = await productModel.findById(id); // Passing 'id' to findById
 
@@ -154,7 +152,6 @@ const getOneProduct = async (req, res) => {
 
 const subCategoryProductsAll = async (req, res) => {
   const { id } = req.params;
-  console.log("Fetching products for subcategory ID:", id);
 
   try {
     // Find products in the specified subcategory

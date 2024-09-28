@@ -1,99 +1,134 @@
+/* Profile container */
 .profile-container {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .profile-avatar {
-    font-size: 50px;
-    color: #007bff;
-    margin-right: 15px;
-  }
-  
-  .profile-header h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  .profile-header p {
-    color: #555;
-  }
-  
-  .profile-menu {
-    border-top: 1px solid #ddd;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .menu-item:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .icon-orders,
-  .icon-language,
-  .icon-support,
-  .icon-settings,
-  .icon-address,
-  .icon-logout {
-    font-size: 24px;
-    color: #007bff;
-    margin-right: 10px;
-  }
-  
-  .social-links {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .social-links span {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .social-icon {
-    font-size: 24px;
-    margin: 0 10px;
-    color: #555;
-    transition: color 0.3s;
-  }
-  
-  .social-icon:hover {
-    color: #007bff;
-  }
-  
-  /* Logout Animation */
-  .logout-animation {
-    animation: fadeOut 0.5s forwards;
-  }
-  
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-  }
-  
+  max-width: 900px; /* Wider profile container */
+  padding: 10px; /* Increased padding for spacious feel */
+  border-radius: 15px; /* More pronounced rounded corners */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern sans-serif font */
+}
+
+/* Profile header */
+.profile-header {
+  display: flex; /* Flexbox for layout */
+  align-items: center; /* Center align items */
+  margin-bottom: 40px; /* More space below header */
+}
+
+/* Avatar styling */
+.profile-avatar {
+  font-size: 90px; /* Larger avatar size */
+  color: #007bff; /* Primary color for avatar */
+  border-radius: 50%; /* Circular avatar */
+  background-color: #e9ecef; /* Light gray background for avatar */
+  padding: 15px; /* Padding for circular effect */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow around avatar */
+  margin-right: 25px; /* Space between avatar and text */
+}
+
+/* Profile information */
+.profile-info {
+  display: flex;
+  flex-direction: column; /* Stack name and email */
+}
+
+/* Header text styling */
+.profile-info h1 {
+  font-size: 30px; /* Slightly larger header size */
+  margin: 0; /* No margin */
+  color: #343a40; /* Darker text color */
+}
+
+.profile-info p {
+  margin: 5px 0 0; /* Spacing above */
+  color: #6c757d; /* Medium gray text color */
+}
+
+/* Menu styling */
+.profile-menu {
+  margin-top: 25px; /* Space above menu */
+}
+
+/* Menu item styling */
+.menu-item {
+  display: flex; /* Flexbox for item layout */
+  align-items: center; /* Center align items */
+  padding: 15px; /* Padding around item */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s; /* Transition for hover effect */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #ffffff; /* White background for items */
+  margin-bottom: 10px; /* Space between items */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  font-size: xx-large;
+}
+
+/* Hover effect for menu items */
+.menu-item:hover {
+  background-color: #e9ecef; /* Light gray on hover */
+}
+
+/* Icon styling */
+.menu-item .icon-orders,
+.menu-item .icon-language,
+.menu-item .icon-support,
+.menu-item .icon-settings,
+.menu-item .icon-address,
+.menu-item .icon-logout {
+  font-size: 28px; /* Icon size */
+  color: #007bff; /* Primary color */
+}
+
+/* Text styling for menu items */
+.menu-item div {
+  margin-left: 5vh;
+  display: flex; /* Flex for text layout */
+  flex-direction: column; /* Column direction */
+}
+
+.menu-item span {
+  font-size: 20px; /* Span text size */
+  color: #343a40; /* Dark text color */
+}
+
+.menu-item p {
+  font-size: 15px; /* Smaller description text */
+  color: #868e96; /* Light color for descriptions */
+}
+
+/* Menu link styling */
+.menu-link {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit color from parent */
+  display: flex; /* Flexbox for layout */
+  align-items: center; /* Center align items */
+}
+
+/* Social links styling */
+.social-links {
+  margin-top: 50px; /* Space above social links */
+  text-align: center; /* Center align social links */
+}
+
+.social-links span {
+  font-size: 20px; /* Font size for social text */
+  color: #495057; /* Medium gray color */
+  margin-bottom: 15px; /* Space below text */
+}
+
+/* Social icons */
+.social-icons {
+  display: flex; /* Flexbox for social icons */
+  justify-content: center; /* Center align */
+  gap: 20px; /* Space between icons */
+}
+
+.social-icon {
+  font-size: 28px; /* Size of social icons */
+  color: #007bff; /* Primary color */
+  transition: color 0.3s ease, transform 0.2s; /* Transition for hover effect */
+}
+
+/* Hover effect for social icons */
+.social-icon:hover {
+  color: #0056b3; /* Darker shade on hover */
+  transform: scale(1.1); /* Slightly scale up on hover */
+}

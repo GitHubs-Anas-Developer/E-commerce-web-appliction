@@ -4,6 +4,8 @@ import ProductContext from "../../context/AllProducts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "./SubCategoryProducts.css";
+import CartContextApi from "../../context/CartContextApi";
+import AuthContext from "../../context/AuthContextApi";
 
 function SubCategoryProducts() {
   const { id } = useParams();
@@ -12,9 +14,11 @@ function SubCategoryProducts() {
     subProducts,
     loadingSubProducts,
     errorSubProducts,
-    addToCart,
-    addToWishlist,
   } = useContext(ProductContext);
+
+  const { handleToCart } = useContext(CartContextApi);
+  const { user } = useContext(AuthContext);
+  const userId = user ? user._id : null;
 
   useEffect(() => {
     subcategoryProducstId(id);
@@ -22,7 +26,7 @@ function SubCategoryProducts() {
 
   // Handle loading state
   if (loadingSubProducts) {
-    return <div className="loading">Loading subcategory products...</div>;
+    return <div className="loading">Loading products...</div>;
   }
 
   // Handle error state
@@ -35,54 +39,76 @@ function SubCategoryProducts() {
     );
   }
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
+
+  const formatOfferPrice = (offerPrice) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+    }).format(offerPrice);
+  };
+
   return (
     <div className="subcategory-products-container">
       <h2 className="subcategory-title">Products in this Subcategory</h2>
       {subProducts.length > 0 ? (
         <div className="sub-products-product-list">
-          {subProducts.map((product) => (
-            <div key={product._id} className="sub-productsproduct-card">
-              <Link className="Links" to={`/productDetails/${product._id}`}>
-              <p className="sub-products-product-discount">
-                    Discount:{" "}
-                    <span className="sub-products-discount-percentage">
-                      {product.discountPercentage}%
-                    </span>
-                  </p>
+          {subProducts.map(({ _id, title, discountPercentage, images, price, offerPrice }) => (
+            <div key={_id} className="sub-productsproduct-card">
+              <Link className="Links" to={`/productDetails/${_id}`}>
+                <p className="sub-products-product-discount">
+                  Discount:{" "}
+                  <span className="sub-products-discount-percentage">
+                    {discountPercentage}%
+                  </span>
+                </p>
                 <img
-                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.images[0]?.filename}`}
-                  alt={""}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${images[0]?.filename}`}
+                  alt={`Image of ${title}`}
                   className="sub-products-product-image"
                 />
                 <div className="product-actions-container">
                   <button
                     className="cart-button"
-                    onClick={() => addToCart(product)}
-                    aria-label={`Add ${product.title} to Cart`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      handleToCart(
+                        userId,
+                        _id,
+                        offerPrice,
+                        title,
+                        images[0]
+                      );
+                    }}
+                    aria-label={`Add ${title} to Cart`}
                   >
                     <FontAwesomeIcon icon={faShoppingCart} />
                   </button>
                   <button
                     className="wishlist-button"
-                    onClick={() => addToWishlist(product)}
-                    aria-label={`Add ${product.title} to Wishlist`}
+                    aria-label={`Add ${title} to Wishlist`}
                   >
                     <FontAwesomeIcon icon={faHeart} />
                   </button>
                 </div>
                 <div className="sub-products-product-details">
-                  <h3 className="sub-products-product-name">{product.title}</h3>
+                  <h3 className="sub-products-product-name">{title}</h3>
                   <p className="sub-products-product-price">
-                    <span className="price">₹{product.price}</span>
+                    <span className="price">{formatPrice(price)}</span>
                   </p>
-
                   <p className="sub-products-product-offer-price">
                     <span className="sub-products-offer-price">
-                      ₹{product.offerPrice}
+                      {formatOfferPrice(offerPrice)}
                     </span>
                   </p>
-
-                 
                 </div>
               </Link>
             </div>

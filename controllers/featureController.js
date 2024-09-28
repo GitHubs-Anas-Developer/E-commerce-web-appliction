@@ -20,8 +20,6 @@ const createFeature = async (req, res) => {
       });
     }
 
-    console.log(title, price, offerPrice, discountPercentage);
-
     // Handling uploaded files
     const images = req.files.map((file) => ({
       filename: file.filename,
@@ -87,8 +85,40 @@ const getFeatureAll = async (req, res) => {
     });
   }
 };
+const getOneFeature = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    console.log(id);
+
+    // Find product by MongoDB _id
+    const featureProduct = await featureModel.findOne({ _id: id });
+
+    console.log("featureProduct", featureProduct);
+
+    // If product is not found, return a 404 response
+    if (!featureProduct) {
+      return res.status(404).json({
+        success: false,
+        message: "Feature product not found",
+      });
+    }
+
+    // Return the product data in the response
+    res.status(200).json({
+      success: true,
+      product: featureProduct,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: `Error retrieving feature product: ${error.message}`,
+    });
+  }
+};
 
 module.exports = {
   createFeature,
   getFeatureAll,
+  getOneFeature,
 };

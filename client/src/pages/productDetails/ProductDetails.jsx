@@ -1,11 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ProductDetails.css"; // Import the CSS file for styling
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ProductContext from "../../context/AllProducts"; // Import your context
-import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContextApi";
+import CartContextApi from "../../context/CartContextApi";
+
 function ProductDetails() {
   const { id } = useParams(); // Get the product ID from the URL
+  
   const { productId, product } = useContext(ProductContext); // Destructure context values
+  const { handleToCart } = useContext(CartContextApi);
+  const { user } = useContext(AuthContext);
+  const userId = user ? user._id : null;
 
   useEffect(() => {
     // Call the productId function and pass the ID as an argument
@@ -18,6 +24,15 @@ function ProductDetails() {
   if (!product || !product.images) {
     return <div>Loading...</div>; // Render a loading state while the product is being fetched
   }
+
+  // Format price function
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  };
 
   return (
     <div className="product-details">
@@ -37,9 +52,7 @@ function ProductDetails() {
                 key={img._id}
                 src={`${process.env.REACT_APP_BACKEND_URL}/images/${img.filename}`} // Use the filename
                 alt={`product-img-${index}`}
-                className={`product-thumbnail ${
-                  index === selectedImage ? "active" : ""
-                }`}
+                className={`product-thumbnail ${index === selectedImage ? "active" : ""}`}
                 onClick={() => setSelectedImage(index)}
               />
             ))}
@@ -51,24 +64,33 @@ function ProductDetails() {
           <h2 className="product-details-title">{product.title}</h2>
           <div className="product-details--reviews">
             <span className="product-details-rating">{product.rating} ★</span>
-            <span className="product-details-reviews">
-              {product.reviews} Ratings
-            </span>
+            <span className="product-details-reviews">{product.reviews} Ratings</span>
           </div>
           <div className="product-details-price-info">
             <span className="product-details-original-price">
-              ₹{product.price}
+              {formatPrice(product.price)} {/* Format original price */}
             </span>
-            
+
             <span className="product-details-current-price">
-              ₹{product.offerPrice}
+              {formatPrice(product.offerPrice)} {/* Format offer price */}
             </span>
             <span className="product-details-discount-info">
               {product.discountPercentage}% off
             </span>
           </div>
           <div className="product-details-actions">
-            <button className="btn product-details-add-to-cart">
+            <button
+              className="btn product-details-add-to-cart"
+              onClick={() =>
+                handleToCart(
+                  userId,
+                  product._id,
+                  product.offerPrice,
+                  product.title,
+                  product.images[0]
+                )
+              }
+            >
               Add to Cart
             </button>
             <Link className="Link" to={`/delivaryAddress/${product._id}`}>
@@ -83,10 +105,15 @@ function ProductDetails() {
           <div className="product-details-list">
             <h3>Key Features:</h3>
             <ul className="product-features">
-              {product.features &&
-                product.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
+              {product.images.map((img, index) => (
+                <img
+                  key={img._id}
+                  src={`${process.env.REACT_APP_BACKEND_URL}/images/${img.filename}`} // Use the filename
+                  alt={`product-img-${index}`}
+                  className={`image-details ${index === selectedImage ? "active" : ""}`}
+                  onClick={() => setSelectedImage(index)}
+                />
+              ))}
             </ul>
           </div>
         </div>

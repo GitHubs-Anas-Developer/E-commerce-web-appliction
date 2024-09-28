@@ -1,0 +1,55 @@
+.search-results-container {
+  padding: 10px; /* Padding around the search results container */
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+  justify-content: center; /* Center items horizontally */
+  max-width: 1200px; /* Set a maximum width for the container */
+}
+
+.search-product-link {
+  text-decoration: none; /* Remove underline from links */
+  margin: 10px; /* Space between product links */
+}
+
+.search-product-card {
+  margin-left: auto;
+  margin-right: a;
+  border: 1px solid #ddd; /* Light border for the card */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow from rounded corners */
+  transition: transform 0.2s; /* Smooth transform effect on hover */
+  background-color: #fff; /* Background color for the card */
+  width: 160px; /* Set a fixed width for the product card */
+}
+
+.search-product-card:hover {
+  transform: scale(1.05); /* Scale up the card slightly on hover */
+}
+
+.search-product-image {
+  width: 100%; /* Full width for the image */
+  height: auto; /* Maintain aspect ratio of the image */
+}
+
+.search-product-title {
+  font-size: 1.1rem; /* Larger font size */
+  margin-bottom: 12px; /* Margin below title */
+  font-weight: 500; /* Medium weight */
+  color: #333; /* Dark color */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-product-price {
+  text-align: center;
+  color: #007bff; /* Color for the price */
+  font-size: 14px; /* Font size for price */
+  margin: 5px 0 0; /* Margin adjustments */
+}
+
+.no-products-found {
+  color: #ff0000; /* Red color for the no products found message */
+  font-size: 16px; /* Font size for the message */
+  text-align: center; /* Center the text */
+}

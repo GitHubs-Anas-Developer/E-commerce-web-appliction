@@ -150,13 +150,16 @@
 .product-features {
   list-style-type: disc;
   padding-left: 20px;
+
   line-height: 1.6;
 }
 
 .product-features li {
   font-size: 1rem;
 }
-
+.image-details {
+  width: 100%;
+}
 /* Responsive Styles */
 
 @media (max-width: 768px) {

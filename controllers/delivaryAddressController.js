@@ -51,7 +51,7 @@ const createDeliveryAddress = async (req, res) => {
       phoneNumber,
     });
 
-    console.log(newAddress);
+
 
     // Save the delivery address to the database
     await newAddress.save();

@@ -13,6 +13,7 @@ export const FeatureContextProvider = ({ children }) => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/feature`);
         setFeatured(response.data.features);
+        
       } catch (error) {
         setError('Failed to load featured products');
         console.error(error);

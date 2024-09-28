@@ -43,7 +43,7 @@ function SubCategory() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/createSubCategory`,
+        `http://localhost:8050/api/v1/createSubCategory`,
         formData,
         {
           headers: {
@@ -69,7 +69,7 @@ function SubCategory() {
     const fetchSubCategories = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/category`
+          `http://localhost:8050/api/v1/category`
         );
         setSubCategories(response.data.category);
         console.log("Fetched subCategories:", response.data.subCategories);

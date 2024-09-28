@@ -1,8 +1,6 @@
 /* Container for the featured section */
 .featured-container {
   padding: 30px;
-
-  
 }
 
 /* Title styling */
@@ -29,6 +27,7 @@
 
 /* Styling for each featured item */
 .featured-item {
+  margin-left: 0.1vh;
   background: #fff;
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow */
@@ -52,7 +51,7 @@
   width: 100%;
   height: 120px; /* Adjusted height */
   border-bottom: 2px solid #e1e1e1; /* Slightly thicker border */
-  object-fit: cover; /* Cover the container */
+  object-fit: contain; /* Cover the container */
 }
 
 /* Title styling */
@@ -101,7 +100,7 @@
   transition: opacity 0.3s ease;
 }
 
-.featured-item:hover .featured-item-icons {
+.featured-item-icons {
   opacity: 1; /* Show icons on hover */
 }
 

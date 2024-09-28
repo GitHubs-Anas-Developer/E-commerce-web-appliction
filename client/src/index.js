@@ -11,6 +11,9 @@ import { CategoryContextProvider } from "./context/CategoryApi";
 import { SubCategoryContextProvider } from "./context/SubCategoryApi";
 import { ProductContextProvider } from "./context/AllProducts";
 import { AddressContextProvider } from "./context/AddressApi";
+import { CartContextApiProvider } from "./context/CartContextApi";
+import { WishListContextProvider } from "./context/WishListContextApi";
+import { OrderContextProvider } from "./context/OrderContextApi";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,7 +26,13 @@ root.render(
               <SubCategoryContextProvider>
                 <ProductContextProvider>
                   <AddressContextProvider>
-                    <App />
+                    <CartContextApiProvider>
+                      <WishListContextProvider>
+                        <OrderContextProvider>
+                          <App />
+                        </OrderContextProvider>
+                      </WishListContextProvider>
+                    </CartContextApiProvider>
                   </AddressContextProvider>
                 </ProductContextProvider>
               </SubCategoryContextProvider>

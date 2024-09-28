@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Profile.css";
 import {
   FaRegUserCircle,
@@ -14,12 +14,11 @@ import {
 } from "react-icons/fa";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import AuthContext from "../../context/AuthContextApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Profile() {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
-  const [address, setAddress] = useState(user?.address || "No address provided");
 
   // Navigate to login page if user is not authenticated
   useEffect(() => {
@@ -29,20 +28,8 @@ function Profile() {
   }, [user, navigate]);
 
   const handleLogout = () => {
-    const logoutItem = document.querySelector(".icon-logout").parentElement;
-
     if (window.confirm("Are you sure you want to log out?")) {
-      logoutItem.classList.add("logout-animation");
-      setTimeout(() => {
-        logout();
-      }, 500); // Wait for the animation to complete before logging out
-    }
-  };
-
-  const handleAddressChange = () => {
-    const newAddress = prompt("Please enter your new address:", address);
-    if (newAddress) {
-      setAddress(newAddress);
+      logout();
     }
   };
 
@@ -52,60 +39,19 @@ function Profile() {
         <>
           <div className="profile-header">
             <FaRegUserCircle className="profile-avatar" aria-label="User Avatar" />
-            <div>
+            <div className="profile-info">
               <h1>{user.name}</h1>
               <p>{user.email}</p>
             </div>
           </div>
 
           <div className="profile-menu">
-            <div className="menu-item">
-              <FaClipboardList className="icon-orders" aria-label="My Orders" />
-              <div>
-                <span>My Orders</span>
-                <p>View, track, cancel, return orders</p>
-              </div>
-            </div>
-
-            <div className="menu-item">
-              <FaLanguage className="icon-language" aria-label="Change Language" />
-              <div>
-                <span>Change Language</span>
-                <p>English, Hindi & more</p>
-              </div>
-            </div>
-
-            <div className="menu-item">
-              <RiCustomerService2Fill className="icon-support" aria-label="Customer Care" />
-              <div>
-                <span>Customer Care</span>
-                <p>Get in touch with us</p>
-              </div>
-            </div>
-
-            <div className="menu-item">
-              <FaCog className="icon-settings" aria-label="Account Settings" />
-              <div>
-                <span>Account Settings</span>
-                <p>Payments & others</p>
-              </div>
-            </div>
-
-            <div className="menu-item" onClick={handleAddressChange}>
-              <FaAddressCard className="icon-address" aria-label="Address" />
-              <div>
-                <span>Address</span>
-                <p>{address}</p>
-              </div>
-            </div>
-
-            <div className="menu-item">
-              <i className="icon-policies" aria-label="Legal Policies"></i>
-              <div>
-                <span>Legal Policies</span>
-              </div>
-            </div>
-
+            <MenuItem icon={<FaClipboardList />} title="My Orders" description="View, track, cancel, return orders" link="/orders" />
+            <MenuItem icon={<FaLanguage />} title="Change Language" description="English, Hindi & more" />
+            <MenuItem icon={<RiCustomerService2Fill />} title="Customer Care" description="Get in touch with us" />
+            <MenuItem icon={<FaCog />} title="Account Settings" description="Payments & others" />
+            <MenuItem icon={<FaAddressCard />} title="Address" link="/userAddress" />
+            <MenuItem icon={<div className="icon-policies"></div>} title="Legal Policies" />
             <div className="menu-item" onClick={handleLogout}>
               <FaSignOutAlt className="icon-logout" aria-label="Logout" />
               <div>
@@ -128,5 +74,28 @@ function Profile() {
     </div>
   );
 }
+
+// Menu item component to reduce redundancy
+const MenuItem = ({ icon, title, description, link }) => (
+  <div className="menu-item">
+    {link ? (
+      <Link to={link} className="menu-link">
+        {icon}
+        <div>
+          <span>{title}</span>
+          {description && <p>{description}</p>}
+        </div>
+      </Link>
+    ) : (
+      <>
+        {icon}
+        <div>
+          <span>{title}</span>
+          {description && <p>{description}</p>}
+        </div>
+      </>
+    )}
+  </div>
+);
 
 export default Profile;

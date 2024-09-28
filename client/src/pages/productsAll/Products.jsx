@@ -3,9 +3,18 @@ import ProductContext from "../../context/AllProducts";
 import "./Products.css"; // Custom styles
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContextApi";
+import CartContextApi from "../../context/CartContextApi";
+import WishListContext from "../../context/WishListContextApi";
 
 function Products() {
   const { productsAll, loading } = useContext(ProductContext);
+  const { handleToCart } = useContext(CartContextApi);
+  const { handleToWishList } = useContext(WishListContext);
+
+  const { user } = useContext(AuthContext);
+
+  const userId = user ? user._id : null;
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
@@ -52,7 +61,7 @@ function Products() {
                 <p className="offer-price">
                   {formatOfferPrice(product.offerPrice)}
                 </p>
-                
+
                 {product.discountPercentage && (
                   <p className="discount">
                     {formatDiscount(product.discountPercentage)} OFF
@@ -60,8 +69,34 @@ function Products() {
                 )}
 
                 <div className="product-item-icons">
-                  <CiHeart className="icon heart-icon" />
-                  <CiShoppingCart className="icon cart-icon" />
+                  <CiHeart
+                    className="icon heart-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      handleToWishList(
+                        userId,
+                        product._id,
+                        product.title,
+                        product.images[0]
+                      );
+                    }}
+                  />
+
+                  <CiShoppingCart
+                    className="icon cart-icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      handleToCart(
+                        userId,
+                        product._id,
+                        product.offerPrice,
+                        product.title,
+                        product.images[0]
+                      );
+                    }}
+                  />
                 </div>
               </div>
             </Link>

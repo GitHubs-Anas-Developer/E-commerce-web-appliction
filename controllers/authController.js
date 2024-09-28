@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const registerController = async (req, res) => {
   const { name, email, password } = req.body;
 
-  console.log(name, email, password);
 
   try {
     // Check if user already exists
@@ -65,7 +64,7 @@ const loginController = async (req, res) => {
     }
 
     const token = jwt.sign({ _id: existingUser._id }, process.env.SECRET_KEY, {
-      expiresIn: "1h", // Specify hours
+      expiresIn: "7h", // Specify hours
     });
     console.log(token);
 

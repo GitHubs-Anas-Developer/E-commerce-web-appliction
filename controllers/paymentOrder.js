@@ -2,19 +2,14 @@ const Razorpay = require("razorpay");
 const PaymentOrder = require("../models/paymentModels");
 require("dotenv").config();
 
-
-
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-
 const createOrder = async (req, res) => {
   try {
-    console.log("Request Body:", req.body);
-
-    const { amount, currency, receipt, userId } = req.body;
+    const { amount, currency, receipt, userId, prodId } = req.body;
 
     // Validate request data
     if (!amount || !userId || !receipt) {
@@ -24,9 +19,8 @@ const createOrder = async (req, res) => {
       });
     }
 
-
     const options = {
-      amount: amount , // Convert to paise
+      amount: amount, // Convert to paise
       currency: currency || "INR",
       receipt,
     };
@@ -36,14 +30,13 @@ const createOrder = async (req, res) => {
 
     const paymentOrder = new PaymentOrder({
       userId,
+      prodId,
       razorpayOrderId: razorpayOrder.id,
       amount,
       currency: razorpayOrder.currency,
       receipt: razorpayOrder.receipt,
       status: "created",
     });
-    console.log("paymentOrder",paymentOrder);
-    
 
     const savedOrder = await paymentOrder.save();
     res.status(201).json({
@@ -63,5 +56,68 @@ const createOrder = async (req, res) => {
   }
 };
 
+const getOrder = async (req, res) => {
+  try {
+    const { id } = req.params; // Extracting the user ID from the request body
 
-module.exports = { createOrder };
+    console.log(id);
+
+    // Fetch orders associated with the user ID
+    const orders = await PaymentOrder.find({ userId: id });
+
+    if (orders.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No orders found for this user.",
+      });
+    }
+
+    // Sending the retrieved orders as a response
+    res.status(200).json({
+      success: true,
+      orders, // The orders found for the user
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message, // Send the error message
+    });
+  }
+};
+
+const getOneOrder = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'Order ID is required',
+      });
+    }
+
+    const order = await PaymentOrder.findOne({ prodId: id });
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: 'Order not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: order,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message,
+    });
+  }
+};
+
+
+module.exports = { createOrder, getOrder, getOneOrder };

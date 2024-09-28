@@ -1,0 +1,64 @@
+/* Container for the entire receipt */
+.receipt-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+/* The receipt card style */
+.receipt-box {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header of the receipt */
+.receipt-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #4caf50; /* Green accent color */
+}
+
+/* Individual detail row */
+.receipt-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* Highlighted text styling */
+.receipt-detail strong {
+  color: #555;
+}
+
+/* Styling for missing orders */
+.receipt-no-order {
+  font-size: 18px;
+  color: #999;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .receipt-box {
+    padding: 20px;
+  }
+
+  .receipt-detail {
+    font-size: 14px;
+  }
+
+  .receipt-header {
+    font-size: 20px;
+  }
+}

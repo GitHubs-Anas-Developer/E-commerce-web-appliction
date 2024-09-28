@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f9f9f9;
+  min-height: 80vh;
 }
 
 .auth-form {
@@ -53,4 +52,23 @@
 
 .login-link a {
   color: #007bff;
+}
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  padding: 10px;
+  padding-right: 40px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  user-select: none;
 }

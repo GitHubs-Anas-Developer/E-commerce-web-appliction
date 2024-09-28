@@ -12,6 +12,9 @@ const subcategoryRoute = require("./routes/subCategoryRoute");
 const productRoute = require("./routes/productRoute");
 const addressRoute = require("./routes/AddressRoute");
 const paymentRoute = require("./routes/paymentRoute");
+const cartRoute = require("./routes/cartRoute");
+const wishListRoute = require("./routes/wishListRoute");
+
 const path = require("path");
 
 // Load environment variables
@@ -38,6 +41,8 @@ app.use("/api/v1", subcategoryRoute);
 app.use("/api/v1", productRoute);
 app.use("/api/v1", addressRoute);
 app.use("/api/v1", paymentRoute);
+app.use("/api/v1", cartRoute);
+app.use("/api/v1", wishListRoute);
 
 // Centralized error handling
 app.use((err, req, res, next) => {
